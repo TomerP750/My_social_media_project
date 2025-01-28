@@ -1,0 +1,41 @@
+.LayoutRightSection {
+	flex: 3.5;
+	/*background-color: #f4f3f3;*/
+	height: calc(100vh - 50px);
+
+	overflow-y: scroll;
+
+}
+
+::-webkit-scrollbar {
+	width: 5px;
+}
+
+::-webkit-scrollbar-track {
+	background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: rgb(179,179,179);
+}
+
+.box {
+	height: 200px;
+	width: 200px;
+	background-color: #007BFF;
+	margin-left: 50px;
+	margin-top: 50px;
+	position: fixed;
+}
+
+.eyes {
+	display: flex;
+	justify-content: space-around;
+	margin-top: 50px;
+}
+
+.eye {
+	background-color: white;
+	width: 10px;
+	height: 10px;
+}

@@ -1,0 +1,136 @@
+.postCard {
+    width: 100%;
+    /*border-radius: 10px;*/
+    -webkit-box-shadow: 0px 0px 16px -8px rgba(0,0,0,0.68);
+    box-shadow: 0px 0px 16px -8px rgba(0,0,0,0.68);
+    margin: 30px 0;
+    font-family: "Outfit", Arial;
+    background-color: #fff;
+}
+
+.postCardWrapper {
+    padding: 10px;
+}
+
+.postTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.postTopLeft {
+    display: flex;
+    align-items: center;
+}
+
+.profileImg {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #0b56d6;
+}
+
+.postFullName {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.postFullName:hover {
+    text-decoration: underline;
+}
+
+.postTime {
+    font-size: 0.9rem;
+}
+
+.postCenter {
+    margin: 20px 0;
+}
+
+.postBottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.postBottomLeft {
+    display: flex;
+    align-items: center;
+}
+
+.star-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+}
+
+.star-icon.active {
+    color: #5858df;
+}
+
+.likeCounterText {
+    font-size: 15px;
+}
+
+.postCommentText {
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.postCommentText:hover {
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+.threeverticaldots {
+    cursor: pointer;
+}
+
+.postActions {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1rem;
+    font-weight: 600;
+}
+
+.likePost {
+    cursor: pointer;
+}
+
+.likePost:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.likePost:active {
+    user-select: none;
+}
+
+.commentPost {
+    cursor: pointer;
+}
+
+.commentPost:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.commentPost:active {
+    user-select: none;
+}
+
+.sharePost {
+    cursor: pointer;
+}
+
+.sharePost:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.sharePost:active {
+    user-select: none;
+}

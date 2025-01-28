@@ -1,0 +1,235 @@
+.navbar {
+	height: 70px;
+    width: 100%;
+    background-color: #0b56d6;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    font-family: "Outfit";
+    font-weight: 600;
+
+}
+
+.logo {
+    font-size: 24px;
+    margin-left: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+}
+
+.logo .logoIcon {
+    font-size: 40px; !important;
+}
+
+.navbarLeft {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 1rem;
+    flex: 3;
+}
+
+.navbarCenter {
+    flex: 5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbarItem {
+    display: flex;
+    flex-direction: column;
+    margin: 0 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbarItem:hover {
+    cursor: pointer;
+}
+
+.navbarItemText {
+    font-family: "Outfit Thin";
+    color: white;
+    font-size: 14px;
+}
+
+.navbarItemLogo {
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.searchBar {
+    width: 50%;
+    height: 30px;
+    background-color: #0b56d6;
+    display: flex;
+    align-items: center;
+    border: 2px solid white;
+    border-radius: 15px;
+}
+
+.searchIcon {
+    font-size: 20px; !important;
+    margin-left: 10px;
+    color: white !important;
+    margin-right: 5px;
+}
+
+.searchInput {
+    font-family: Outfit;
+    color: white;
+    background-color: #0b56d6;
+    border: none;
+    width: 70%;
+}
+
+.searchInput::placeholder {
+    opacity: 0.8;
+    color: white;
+    font-family: Outfit;
+}
+
+.searchInput:focus {
+    outline: none;
+}
+
+.navbarRight{
+    flex: 4;
+    display: flex;
+    align-items: center;
+    /*justify-content: space-between;*/
+    justify-content: center;
+    color: white;
+}
+
+.navbarLink {
+    margin-right: 20px;
+    font-size: 18px;
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+}
+
+.navbarIcons {
+    display: flex;
+}
+
+.navbarIconItem {
+    margin-right: 20px;
+    cursor: pointer;
+    position: relative;
+}
+
+.navbarImg {
+    width: 35px;
+    height: 35px;
+    border-radius: 50px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.navbarLogin {
+    color: white;
+    text-decoration: none;
+}
+
+.loginContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-right: 1.5rem;
+    border: 2px solid white;
+    padding: 6px;
+    border-radius: 25px;
+}
+
+.navbarLoginIcon {
+    font-size: 30px !important;
+    margin-right: -10%;
+}
+
+.navbarLogOutItem {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+}
+
+.navbarLogOutItem:hover {
+    transform: scale(1.1);
+}
+
+.navbarLoginItem {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    cursor: pointer;
+}
+
+.navbarLoginItem:hover {
+    transform: scale(1.1);
+    text-decoration: underline;
+}
+
+.navbarItems {
+    display: flex;
+    margin-right: 3.1rem;
+}
+
+
+
+
+
+.navbarRight .navbarItem {
+    position: relative;
+}
+
+.navbarRight .dropdown {
+    position: absolute;
+    top: 100%;
+    left: 88%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    border: 1px solid #0b56d6;
+    border-radius: 5px;
+    width: 100px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+}
+
+.navbarRight .dropdown.visible {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+}
+
+.dropdown select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: none;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+}
+
+.dropdown select:focus {
+    outline: none;
+}
+
+.dropdown option {
+    padding: 10px;
+}
+
+
+
+
+
+

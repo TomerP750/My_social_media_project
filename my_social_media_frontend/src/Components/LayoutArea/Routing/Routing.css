@@ -1,0 +1,11 @@
+.Routing {
+	min-height: 100vh;
+	width: 50%;
+	display: flex;
+	flex: 5.5;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	/*box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);*/
+	/*background-color: #F3F6F8;*/
+}

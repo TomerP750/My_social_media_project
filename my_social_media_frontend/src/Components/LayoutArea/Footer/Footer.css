@@ -1,0 +1,141 @@
+
+.Footer {
+	background-color: #394c55;
+	color: #fff;
+	padding: 40px;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	flex-wrap: wrap;
+	font-family: Outfit;
+}
+
+.footer-left {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	width: 65%;
+}
+
+.footer-column {
+	flex: 1 1 20%;
+}
+
+.footer-column h3 {
+	font-size: 18px;
+	margin-bottom: 10px;
+	color: #fff;
+}
+
+.footer-column ul {
+	list-style: none;
+	padding: 0;
+}
+
+.footer-column ul li {
+	margin-bottom: 8px;
+}
+
+.footer-column ul li a {
+	color: #ccc;
+	text-decoration: none;
+	font-size: 14px;
+}
+
+.footer-column ul li a:hover {
+	color: #007bff;
+}
+
+.footer-right {
+	width: 30%;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+}
+
+.social-icons {
+	display: flex;
+	gap: 20px;
+	margin-bottom: 20px;
+}
+
+.social-media-link-icon {
+	color: #fff;
+	font-size: 24px;
+	text-decoration: none;
+}
+
+.social-icons .social-media-link-icon:nth-child(1):hover {
+	color: #3b5998;  /* Facebook blue */
+}
+
+.social-icons .social-media-link-icon:nth-child(2):hover {
+	color: #1da1f2;
+}
+
+.social-icons .social-media-link-icon:nth-child(3):hover {
+	color: #e4405f;  /* Instagram pink */
+}
+
+.social-icons .social-media-link-icon:nth-child(4):hover {
+	color: #0077b5;  /* LinkedIn blue */
+}
+
+.subscribe {
+	display: flex;
+	width: 100%;
+	align-items: center;
+}
+
+.subscribe-input {
+	padding: 10px;
+	font-size: 14px;
+	margin-right: 10px;
+	width: 80%;
+	border: none;
+	border-radius: 5px;
+}
+
+.subscribe-btn {
+	padding: 10px;
+	background-color: #007bff;
+	border: none;
+	color: white;
+	cursor: pointer;
+	font-size: 14px;
+	border-radius: 5px;
+	width: 20%;
+}
+
+.subscribe-btn:hover {
+	background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+	.Footer {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.footer-left {
+		width: 100%;
+		justify-content: center;
+	}
+
+	.footer-right {
+		width: 100%;
+		align-items: center;
+		margin-top: 20px;
+	}
+
+	.subscribe {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.subscribe-input,
+	.subscribe-btn {
+		width: 100%;
+		margin-right: 0;
+	}
+}

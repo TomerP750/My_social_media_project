@@ -1,0 +1,17 @@
+.Feed {
+    width: 100%;
+    /*display: flex;*/
+    /*align-items: center;*/
+    flex-direction: column;
+}
+
+
+.posts {
+    width: 100%;
+}
+
+.filter {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}

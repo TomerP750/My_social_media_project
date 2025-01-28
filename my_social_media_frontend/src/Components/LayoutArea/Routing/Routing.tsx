@@ -1,0 +1,24 @@
+import "./Routing.css";
+import {Route, Routes} from "react-router-dom";
+import {NotFound} from "../../NotFound/NotFound.tsx";
+import {Feed} from "../../FeedAndPostsArea/Feed/Feed.tsx";
+import {Login} from "../../AuthArea/Login/Login.tsx";
+import {AccountProfile} from "../../AccountProfile/AccountProfile.tsx";
+import {Register} from "../../AuthArea/Register/Register.tsx";
+
+export function Routing(): JSX.Element {
+    return (
+        <div className="Routing">
+
+			<Routes>
+
+                <Route path={"/"} element={<Feed/>}/>
+                <Route path={"login"} element={<Login/>}/>
+                <Route path={"user/:userName"} element={<AccountProfile/>}/>
+                <Route path={"register"} element={<Register/>}/>
+
+                <Route path={"*"} Component={NotFound}/>
+            </Routes>
+        </div>
+    );
+}

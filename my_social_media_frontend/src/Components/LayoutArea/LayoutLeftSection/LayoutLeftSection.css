@@ -1,0 +1,76 @@
+.LayoutLeftSection {
+    flex: 3;
+	height: calc(100vh - 50px);
+    /*background-color: #f4f3f3;*/
+    font-family: Outfit;
+    font-weight: 400;
+    overflow-y: scroll;
+    display: flex;
+    justify-content: flex-end;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(179,179,179);
+}
+
+.leftSectionWrapper {
+    padding: 20px;
+    margin-right: 1rem;
+
+}
+
+.listItems {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+}
+
+.listItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    cursor: pointer;
+    width: 30%;
+}
+
+.listItem:hover {
+    text-decoration: underline;
+}
+
+.sidebarIcon {
+    margin-right: 15px;
+}
+
+.sideBarListItemText {
+    font-weight: 500;
+}
+
+.expandButton {
+    font-family: Outfit;
+    width: 150px;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: 400;
+    background-color: #2e69f6;
+    color: white;
+    cursor: pointer;
+}
+
+.expandButton:hover {
+    background-color: #0b56d6;
+}
+
+.leftSectionHr {
+    margin: 20px 0;
+}
+

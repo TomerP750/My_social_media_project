@@ -1,0 +1,62 @@
+.AccountProfile {
+	font-family: Outfit;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.banner {
+    width: 100%;
+    height: 250px;
+    background-color: cyan;
+}
+
+.banner img {
+    width: 100%;
+    height: 250px;
+}
+
+.profileFullName {
+    display: flex;
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+
+.profileFirstName {
+
+}
+
+.profileLastName {
+    margin-left: 0.3rem;
+}
+
+.profileFollowStats {
+    display: flex;
+    font-weight: 500;
+    color: black;
+}
+
+.accountMainInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.followStat {
+    margin-left: 1rem;
+}
+
+.editProfileButton {
+    text-decoration: none;
+    color: black;
+    padding: 15px;
+    border: none;
+    border-radius: 25px;
+    background-color: #125dd8;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.editProfileButton:hover {
+    background-color: #0a3380;
+}

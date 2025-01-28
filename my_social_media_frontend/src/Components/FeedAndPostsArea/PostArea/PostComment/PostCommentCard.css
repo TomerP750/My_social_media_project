@@ -1,0 +1,59 @@
+
+.PostComment {
+    display: flex;
+    flex-direction: column;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.PostComment-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.commentAuthor-image {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    margin-right: 15px;
+    object-fit: cover;
+}
+
+.commentAuthor-info {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.commentAuthor-name {
+    font-weight: 600;
+    color: black;
+    font-size: 16px;
+    margin-bottom: 0;
+}
+
+.commentAuthor-name:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.timeAgo {
+    font-size: 14px;
+    color: #7f7f7f;
+    text-align: right;
+}
+
+.commentMessage {
+    font-size: 17px;
+    color: #333;
+    line-height: 1.6;
+    margin-top: 10px;
+}
+
