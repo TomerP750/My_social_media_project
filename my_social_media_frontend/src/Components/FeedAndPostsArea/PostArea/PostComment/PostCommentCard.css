@@ -2,12 +2,20 @@
 .PostComment {
     display: flex;
     flex-direction: column;
-    background-color: #f9f9f9;
+    background-color: white;
     padding: 15px;
     border-radius: 8px;
     margin: 15px 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 1rem;
 }
+
+.postCommentHr {
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.3); /* Light gray for a subtle line */
+    margin: 16px 0; /* Space above and below */
+    width: 100%; /
+}
+
 
 .PostComment-header {
     display: flex;

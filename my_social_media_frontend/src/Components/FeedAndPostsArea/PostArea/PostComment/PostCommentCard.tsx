@@ -41,23 +41,27 @@ export function PostCommentCard(props: PostCommentProps): JSX.Element {
     }
 
     return (
-        <div className="PostComment">
-            <div className="PostComment-header">
-                <img
-                    // src={props.postComment.commentAuthor.image}
-                    src={dif}
-                    alt="Profile"
-                    className="commentAuthor-image"
-                />
-                <div className="commentAuthor-info">
+        <>
+
+            <div className="PostComment">
+                <div className="PostComment-header">
+                    <img
+                        // src={props.postComment.commentAuthor.image}
+                        src={dif}
+                        alt="Profile"
+                        className="commentAuthor-image"
+                    />
+                    <div className="commentAuthor-info">
             <span className="commentAuthor-name" onClick={handleFullNameClick}>
-                {props.postComment.commentAuthor.firstName} {props.postComment.commentAuthor.lastName}
+                {user && user.firstName} {user && user.lastName}
             </span>
-                    <span className="timeAgo">{timeAgoText}</span>
-                    {/*{user!.id === props.postComment.commentAuthor.id && <MoreVert/>}*/}
+                        <span className="timeAgo">{timeAgoText}</span>
+                        {/*{user!.id === props.postComment.commentAuthor.id && <MoreVert/>}*/}
+                    </div>
                 </div>
+                <p className="commentMessage">{props.postComment.message}</p>
             </div>
-            <p className="commentMessage">{props.postComment.message}</p>
-        </div>
+            <hr className={"postCommentHr"}/>
+        </>
     );
 }

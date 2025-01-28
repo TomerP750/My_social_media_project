@@ -96,7 +96,7 @@ export function PostCard(props: PostProps): JSX.Element {
                     </div>
                 </div>
                 <div className="postActions">
-                    <span className={"likePost"} onClick={handleLike}>Like</span>
+                    <span className={"likePost"} onClick={handleLike}>Star</span>
                     <span className={"commentPost"} onClick={handleOpenComments}>Comment</span>
                     <span className={"sharePost"}>Share</span>
                 </div>

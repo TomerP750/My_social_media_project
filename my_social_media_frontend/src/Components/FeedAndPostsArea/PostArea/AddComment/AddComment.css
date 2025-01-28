@@ -1,8 +1,10 @@
 .AddComment {
     width: 100%;
-    padding: 10px;
+    padding-left: 10px;
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
+    background-color: white;
 }
 
 .addCommentTop {
@@ -13,6 +15,25 @@
     /*border: 1px solid #e0e0e0;*/
     /*border-radius: 30px;*/
     /*background-color: #fafafa;*/
+}
+
+.addCommentBottom {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    margin-left: 2.8rem;
+}
+
+.addCommentIcon {
+    font-size: 22px !important;
+    margin-left: 1rem;
+    cursor: pointer;
 }
 
 .addCommentUserImage {
@@ -26,9 +47,8 @@
 .addCommentInput {
     flex: 1;
     padding: 8px 12px;
-    border: 1px solid black;
-    border-radius: 20px;
-    background-color: #fff;
+    border: none;
+    background-color: white;
     font-size: 14px;
     outline: none;
     color: #333;
@@ -38,18 +58,16 @@
     font-family: Outfit;
 }
 
-.addCommentInput:focus {
-    border: 1px solid #007BFF;
-}
-
 .addCommentButton {
+    font-family: Outfit;
+    font-weight: 600;
     padding: 8px 15px;
     background-color: #007BFF;
     color: white;
     border: none;
     border-radius: 20px;
     font-size: 14px;
-    margin-left: 10px;
+    margin-right: 3rem;
     cursor: pointer;
 }
 
@@ -61,12 +79,16 @@
     background-color: #004085;
 }
 
-.hrSeperate {
-    margin: 20px 0;
+.hrSeparate {
+    /*margin: 20px 0;*/
+    /*border: 0;*/
+    /*border-top: 1px solid #000000;*/
+    /*width: 100%;*/
+    /*opacity: 1;*/
+    /*margin-top: 30px;*/
+    /*margin-bottom: 20px;*/
     border: 0;
-    border-top: 1px solid #000000;
+    border-top: 1px solid rgba(0, 0, 0, 0.3); /* Darker gray for better visibility */
+    margin: 16px 0; /* Space above and below */
     width: 100%;
-    opacity: 1;
-    margin-top: 30px;
-    margin-bottom: 20px;
 }

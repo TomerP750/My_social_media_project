@@ -12,6 +12,8 @@ export function AccountProfile(): JSX.Element {
     const [followings, setFollowings] = useState<number>(0);
     const params = useParams();
     const userName = params.userName!;
+    const [followersModalOpened, setFollowersModalOpened] = useState<boolean>(false);
+    const [followingsModalOpened, setFollowingsModalOpened] = useState<boolean>(false);
 
     useEffect(() => {
         userService.getProfileByUserName(userName)
@@ -27,7 +29,15 @@ export function AccountProfile(): JSX.Element {
             .catch(err => err.response.data)
     }, []);
 
-    console.log(user)
+    // console.log(user)
+
+    function handleFollowersStatClicked() {
+
+    }
+
+    function handleFollowingStatClicked() {
+
+    }
 
     return (
         <div className="AccountProfile">
@@ -41,8 +51,8 @@ export function AccountProfile(): JSX.Element {
             <div className="accountMainInfo">
 
                 <div className="profileFollowStats">
-                    <span className={"followStat"}>{followers} Followers</span>
-                    <span className={"followStat"}>{followings} following</span>
+                    <span className={"followStat"} onClick={handleFollowersStatClicked}>{followers} Followers</span>
+                    <span className={"followStat"} onClick={handleFollowingStatClicked}>{followings} following</span>
                 </div>
                 {authStore.getState().userName === userName && <NavLink className={"editProfileButton"} to={`/edit/${userName}`}>Edit Profile</NavLink>}
             </div>

@@ -18,11 +18,10 @@ export function CommentsOnPost(props: PostProps): JSX.Element {
             .then(res => setPostComments(res))
             .catch(err => err.response.data)
     }, []);
-    const [test, setTest] = useState<number>(0);
 
     return (
         <div className="CommentsOnPost">
-            <AddComment post={props.post}/>
+            <AddComment post={props.post} setPostComments={setPostComments}/>
             {postComments && postComments.map(comment => <PostCommentCard key={comment.id} postComment={comment}/>)}
         </div>
     );
