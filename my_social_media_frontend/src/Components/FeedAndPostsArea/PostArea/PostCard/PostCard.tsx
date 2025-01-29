@@ -16,6 +16,8 @@ import {AddComment} from "../AddComment/AddComment.tsx";
 
 interface PostProps {
     post: Post
+    onDelete: (postId: number) => void;
+    // onLikeToggle: (postId: number) => void;
 }
 
 export function PostCard(props: PostProps): JSX.Element {
@@ -25,6 +27,7 @@ export function PostCard(props: PostProps): JSX.Element {
     const [postCommentCount, setPostCommentCount] = useState<number>(0);
     const [isLiked, setIsLiked] = useState<boolean>(false);
     const [openedComments, setOpenedComments] = useState<boolean>(false);
+    const [openedMoreVert, setOpenedMoreVert] = useState<boolean>(false);
 
     const navigate = useNavigate();
 
@@ -51,6 +54,17 @@ export function PostCard(props: PostProps): JSX.Element {
         navigate(`/user/${props.post.author.userName}`)
     }
 
+    function handleMoreVertClick() {
+        setOpenedMoreVert(!openedMoreVert);
+    }
+
+    function handleChangeSelect(event: React.ChangeEvent<HTMLSelectElement>) {
+        const selectedValue = event.target.value;
+        if(selectedValue === "delete") {
+            props.onDelete(props.post.id);
+        }
+    }
+
     useEffect(() => {
         feedService.getCommentCountByPostId(props.post.id)
             .then(res=>setPostCommentCount(res))
@@ -75,12 +89,20 @@ export function PostCard(props: PostProps): JSX.Element {
                 <div className="postTop">
                     <div className="postTopLeft">
                         {authStore.getState().token ?
-                            <img className={"profileImg"} src={"#"} alt="img"/> : <img className={"profileImg"} src={defaultProfilePic} alt="img"/>}
-                        <span className={"postFullName"} onClick={handleFullNameClick}>{props.post.author.firstName} {props.post.author.lastName}</span>
+                            <img className={"profileImg"} src={"#"} alt="img"/> :
+                            <img className={"profileImg"} src={defaultProfilePic} alt="img"/>}
+                        <span className={"postFullName"}
+                              onClick={handleFullNameClick}>{props.post.author.firstName} {props.post.author.lastName}</span>
                         <span className={"postTime"}>{timeAgoText}</span>
                     </div>
                     <div className="postTopRight">
-                        <MoreVert className={"threeverticaldots"}/>
+                        <MoreVert className={"threeverticaldots"} onClick={handleMoreVertClick}/>
+                        {(authStore.getState().userName === props.post.author.userName) && openedMoreVert &&
+                            <select className={`postOptions ${openedMoreVert ? 'show' : ''}`}
+                                    onChange={handleChangeSelect}>
+                                <option value={""}></option>
+                                <option value={"delete"}>Delete Post</option>
+                            </select>}
                     </div>
                 </div>
                 <div className="postCenter">
@@ -89,7 +111,7 @@ export function PostCard(props: PostProps): JSX.Element {
                 <div className="postBottom">
                     <div className="postBottomLeft">
                         <span className={"likeCounterText"}>{numOfLikes}</span>
-                        <GradeIcon className={`star-icon ${isLiked ? 'active' : ''}`} />
+                        <GradeIcon className={`star-icon ${isLiked ? 'active' : ''}`}/>
                     </div>
                     <div className="postBottomRight">
                         <span className={"postCommentText"} onClick={handleOpenComments}>{postCommentCount} Comments</span>

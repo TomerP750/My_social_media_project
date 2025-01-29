@@ -61,20 +61,38 @@ export function AccountProfile(): JSX.Element {
             <div className="banner">
                 <img src={test}/>
             </div>
+            <div className="profilePageAvatar"></div>
             <div className="userProfileDetails">
                 <div className="leftSection">
-                    <div className="profilePageAvatar"></div>
                     <div className="fullNameAndFollowStats">
                         <span className="fullName">{user && user.firstName} {user && user.lastName}</span>
                         <div className="followStats">
-                            <span onClick={handleFollowersStatClicked} className="followers">{followers} Followers</span>
-                            <span onClick={handleFollowingStatClicked} className="followings">{followings} Followings</span>
+                            <span onClick={handleFollowersStatClicked}
+                                  className="followers">{followers} Followers</span>
+                            <span onClick={handleFollowingStatClicked}
+                                  className="followings">{followings} Followings</span>
                         </div>
                     </div>
                 </div>
                 <div className="rightSection">
-                    {(user && user.userName) === authStore.getState().userName && <NavLink className={"editProfileButton"} to={`/edit/${authStore.getState().userName}`}>Edit Profile</NavLink>}
+                    {(user && user.userName) === authStore.getState().userName &&
+                        <NavLink className={"editProfileButton"} to={`/edit/${authStore.getState().userName}`}>Edit
+                            Profile</NavLink>}
                 </div>
+            </div>
+
+            <hr className={"userProfileHr"}/>
+
+            {/*<div className="userPageContent">*/}
+            {/*    {(user && user.userName) === authStore.getState().userName && <StartPosting/>}*/}
+            {/*</div>*/}
+
+
+            <div className="aboutSection">
+                <h1>About</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aliquam asperiores atque dicta
+                    distinctio dolor doloribus, harum iste itaque neque officia perferendis provident rerum suscipit
+                    tempora temporibus tenetur vel voluptas.</p>
             </div>
 
 

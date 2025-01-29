@@ -18,16 +18,18 @@
 }
 
 .userProfileDetails {
-
+    margin-top: 4rem;
+    display: flex;
+    /*flex-direction: column;*/
+    justify-content: space-between;
 }
 
 .leftSection {
-    position: absolute;
-    top: 160px;
-    left: 30px;
+    margin-left: 2rem;
 }
 
 .rightSection {
+    /*margin: 1rem 2rem;*/
     display: flex;
     justify-content: flex-end;
 }
@@ -39,7 +41,7 @@
 }
 
 .fullName {
-    margin-bottom: 1rem;
+    margin-bottom: 0.7rem;
     font-size: 2rem;
     font-weight: 500;
 }
@@ -54,6 +56,9 @@
 }
 
 .profilePageAvatar {
+    position: absolute;
+    top: 160px;
+    left: 30px;
     margin-left: 0.8rem;
     width: 150px;
     height: 150px;
@@ -63,7 +68,8 @@
 }
 
 .editProfileButton {
-    margin-top: 3rem;
+    margin-bottom: 3rem;
+    margin-right: 1.5rem;
     text-decoration: none;
     padding: 15px;
     border: none;
@@ -78,5 +84,23 @@
     background-color: #0a3380;
 }
 
+.userPageContent {
+    margin-top: 2rem;
+}
+
+.aboutSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.userProfileHr {
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.7);
+    margin: 16px 0;
+    width: 100%; /
+}
 
 

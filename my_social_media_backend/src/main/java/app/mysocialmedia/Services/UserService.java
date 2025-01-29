@@ -132,7 +132,8 @@ public class UserService {
         Post postFromDb = postRepository.findById(id).orElseThrow(()->new ExistsException("Post Not Found"));
         if (isLoggedIn) {
             if (postFromDb.getAuthor().getId() == user.getId()) {
-                postCommentRepository.deleteById(id);
+                postCommentRepository.deleteCommentsByPostId(id);
+                postLikesRepository.deleteByPostId(id);
                 postRepository.deleteById(id);
             } else {
                 throw new ExistsException("Post Not Found");
