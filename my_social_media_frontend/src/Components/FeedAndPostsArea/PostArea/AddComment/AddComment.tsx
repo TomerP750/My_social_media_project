@@ -89,7 +89,7 @@ export function AddComment(props: AddCommentProps): JSX.Element {
                 <div className="addCommentTop">
                     {/*<img className={"userImage"} src={props.user.image} alt=""/>*/}
                     <div className="addCommentUserImage"></div>
-                    <input placeholder={"Whats on your mind?"}
+                    <input placeholder={"Add Comment"}
                            className={"addCommentInput"}
                            type="text"
                            onChange={handleChange}

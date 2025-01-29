@@ -14,7 +14,7 @@ export function Layout(): JSX.Element {
 
     return (
         <>
-        <Navbar/>
+        {showHeader && <Navbar/>}
         <div className="Layout">
             {showHeader && <LayoutLeftSection/>}
             <Routing/>

@@ -1,6 +1,6 @@
 import "./Routing.css";
 import {Route, Routes} from "react-router-dom";
-import {NotFound} from "../../NotFound/NotFound.tsx";
+import {NotFound} from "../../PageInformationArea/NotFound/NotFound.tsx";
 import {Feed} from "../../FeedAndPostsArea/Feed/Feed.tsx";
 import {Login} from "../../AuthArea/Login/Login.tsx";
 import {AccountProfile} from "../../AccountProfile/AccountProfile.tsx";

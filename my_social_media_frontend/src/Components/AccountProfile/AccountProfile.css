@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    position: relative;
 }
 
 .banner {
@@ -16,39 +17,54 @@
     height: 250px;
 }
 
-.profileFullName {
+.userProfileDetails {
+
+}
+
+.leftSection {
+    position: absolute;
+    top: 160px;
+    left: 30px;
+}
+
+.rightSection {
     display: flex;
-    font-weight: 500;
-    font-size: 1.5rem;
+    justify-content: flex-end;
 }
 
-.profileFirstName {
-
-}
-
-.profileLastName {
-    margin-left: 0.3rem;
-}
-
-.profileFollowStats {
+.fullNameAndFollowStats {
     display: flex;
-    font-weight: 500;
-    color: black;
-}
-
-.accountMainInfo {
-    display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
 }
-.followStat {
+
+.fullName {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.followers {
+    cursor: pointer;
+}
+
+.followings {
     margin-left: 1rem;
     cursor: pointer;
 }
 
+.profilePageAvatar {
+    margin-left: 0.8rem;
+    width: 150px;
+    height: 150px;
+    border: none;
+    border-radius: 50%;
+    background-color: #0a3380;
+}
+
 .editProfileButton {
+    margin-top: 3rem;
     text-decoration: none;
-    color: black;
     padding: 15px;
     border: none;
     border-radius: 25px;
@@ -61,3 +77,6 @@
 .editProfileButton:hover {
     background-color: #0a3380;
 }
+
+
+

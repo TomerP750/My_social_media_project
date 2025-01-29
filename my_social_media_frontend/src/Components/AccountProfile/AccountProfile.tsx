@@ -1,10 +1,12 @@
 import "./AccountProfile.css";
 import {useEffect, useState} from "react";
 import {User} from "../../Models/User.ts";
-import {NavLink, useParams} from "react-router-dom";
+import {NavLink, useLocation, useParams} from "react-router-dom";
 import userService from "../../Services/UserService.ts";
 import test from "../../assets/defaultProfilepic.png"
 import {authStore} from "../../Redux/AuthSlice.ts";
+import {LayoutRightSection} from "../LayoutArea/LayoutRightSection/LayoutRightSection.tsx";
+import {StartPosting} from "../FeedAndPostsArea/PostArea/StartPosting/StartPosting.tsx";
 export function AccountProfile(): JSX.Element {
 
     const [user, setUser] = useState<User>();
@@ -14,6 +16,13 @@ export function AccountProfile(): JSX.Element {
     const userName = params.userName!;
     const [followersModalOpened, setFollowersModalOpened] = useState<boolean>(false);
     const [followingsModalOpened, setFollowingsModalOpened] = useState<boolean>(false);
+    const [followersList, setFollowersList] = useState<User[]>([]);
+    const [followingsList, setFollowingsList] = useState<User[]>([]);
+
+    // const location = useLocation();
+    // const hiddenRightSectionRoutes = [`/user/${user && user.userName}`];
+    // const showRightSection = !hiddenRightSectionRoutes.includes(location.pathname);
+
 
     useEffect(() => {
         userService.getProfileByUserName(userName)
@@ -29,8 +38,16 @@ export function AccountProfile(): JSX.Element {
             .catch(err => err.response.data)
     }, []);
 
-    // console.log(user)
+    // useEffect(() => {
+    //     userService.getUserFollowers()
+    //         .then(res => setFollowers(res))
+    //         .catch(err => err.response.data)
+    //     userService.getUserFollowings()
+    //         .then(res => setFollowings(res))
+    //         .catch(err => err.response.data)
+    // }, []);
 
+    // console.log(user)
     function handleFollowersStatClicked() {
 
     }
@@ -44,18 +61,24 @@ export function AccountProfile(): JSX.Element {
             <div className="banner">
                 <img src={test}/>
             </div>
-            <div className="profileFullName">
-                <span className={"profileFirstName"}>{user && user.firstName}</span>
-                <span className={"profileLastName"}>{user && user.lastName}</span>
-            </div>
-            <div className="accountMainInfo">
-
-                <div className="profileFollowStats">
-                    <span className={"followStat"} onClick={handleFollowersStatClicked}>{followers} Followers</span>
-                    <span className={"followStat"} onClick={handleFollowingStatClicked}>{followings} following</span>
+            <div className="userProfileDetails">
+                <div className="leftSection">
+                    <div className="profilePageAvatar"></div>
+                    <div className="fullNameAndFollowStats">
+                        <span className="fullName">{user && user.firstName} {user && user.lastName}</span>
+                        <div className="followStats">
+                            <span onClick={handleFollowersStatClicked} className="followers">{followers} Followers</span>
+                            <span onClick={handleFollowingStatClicked} className="followings">{followings} Followings</span>
+                        </div>
+                    </div>
                 </div>
-                {authStore.getState().userName === userName && <NavLink className={"editProfileButton"} to={`/edit/${userName}`}>Edit Profile</NavLink>}
+                <div className="rightSection">
+                    {(user && user.userName) === authStore.getState().userName && <NavLink className={"editProfileButton"} to={`/edit/${authStore.getState().userName}`}>Edit Profile</NavLink>}
+                </div>
             </div>
+
+
+            {/*{showRightSection && <LayoutRightSection/>}*/}
         </div>
     );
 }

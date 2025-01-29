@@ -4,6 +4,7 @@
 	height: calc(100vh - 50px);
 
 	overflow-y: scroll;
+	font-family: Outfit;
 
 }
 
@@ -19,23 +20,57 @@
 	background-color: rgb(179,179,179);
 }
 
-.box {
-	height: 200px;
-	width: 200px;
-	background-color: #007BFF;
-	margin-left: 50px;
-	margin-top: 50px;
-	position: fixed;
+.rightSectionWrapper {
+	padding: 20px;
+	margin-left: 1rem;
 }
 
-.eyes {
+.profileBox {
+	height: 300px;
+	width: 300px;
+	background-color: #ededed;
+	position: relative;
+	border-radius: 10px;
+	/*z-index: -1;*/
+}
+
+.profileBoxTop {
 	display: flex;
-	justify-content: space-around;
-	margin-top: 50px;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-top: 1rem;
 }
 
-.eye {
-	background-color: white;
-	width: 10px;
-	height: 10px;
+.profileBoxBanner {
+	width: 100%;
+	height: 100px;
+	background-color: #0a3380;
+}
+
+.rightBoxProfilePicture {
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	background-color: #007BFF;
+}
+
+.profilePictureAndName {
+	position: absolute;
+	top: 3.5rem;
+	left: 6rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.profileName {
+	font-weight: 500;
+	font-size: 25px;
+	cursor: pointer;
+}
+
+.profileBoxBottom {
+
 }

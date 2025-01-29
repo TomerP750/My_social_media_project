@@ -7,6 +7,8 @@ import authService from "../../../../Services/AuthService.ts";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import {getTokenState} from "../../../../Util.ts";
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+
 
 export function NavbarRight(): JSX.Element {
 
@@ -46,39 +48,16 @@ export function NavbarRight(): JSX.Element {
         setMenuOpened(prevState => !prevState);
     }
 
-    // return (
-    //     <div className="navbarRight">
-    //             <>
-    //             {getTokenState() ?
-    //                 <div className="navbarItem" onClick={handleMenu}>
-    //                     <AccountCircle className={"navbarItemLogo"}/>
-    //                     <span className={"navbarItemText"}>{getTokenState() ? authStore.getState().userName :
-    //                         <span>Account</span>} </span>
-    //                 </div> : <div className={"loginContainer"}>
-    //                     <AccountCircleOutlinedIcon className={"navbarLoginIcon"}/>
-    //                     <span className="navbarLoginItem" onClick={()=>navigate("/login")}>LOGIN</span>
-    //                 </div>}
-    //                 {menuOpened && (
-    //                     <div className="dropdown">
-    //                         <select onChange={handleSelectChange} className="dropdownSelect">
-    //                             <option value="">Select</option>
-    //                             <option value="account">Account</option>
-    //                             <option value={"settings"}>Settings</option>
-    //                             <option value="logout">Log out</option>
-    //                         </select>
-    //                     </div>
-    //                 )}
-    //             </>
-    //     </div>
-    // );
     return (
         <div className="navbarRight">
             {getTokenState() ? (
                 <div className="navbarItem" onClick={handleMenu}>
                     <AccountCircle className={"navbarItemLogo"} />
-                    <span className={"navbarItemText"}>
-          {authStore.getState().userName}
-        </span>
+                    <div className="userNameAndArrowDown">
+                    <span className={"navbarItemText"}>{authStore.getState().userName}</span>
+                    <ArrowDropDownIcon sx={{marginLeft:"-5px"}}/>
+                    </div>
+
                 </div>
             ) : (
                 <div className={"loginContainer"}>

@@ -1,3 +1,8 @@
 .NavbarRight {
 	flex: 4;
 }
+
+.userNameAndArrowDown {
+	display: flex;
+	align-items: center;
+}
