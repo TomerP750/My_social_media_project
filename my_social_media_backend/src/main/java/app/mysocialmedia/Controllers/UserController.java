@@ -52,7 +52,7 @@ public class UserController {
     }
 
     @PostMapping("followunfollow/{followedId}")
-    public boolean followUser(@RequestHeader(value = "Authorization") String token,int followedId) throws SQLException {
+    public boolean followUser(@RequestHeader(value = "Authorization") String token,@PathVariable long followedId) throws SQLException {
         return getInstance(token).followUnfollow(followedId);
     }
 

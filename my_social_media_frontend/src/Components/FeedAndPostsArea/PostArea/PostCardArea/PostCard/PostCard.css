@@ -52,7 +52,8 @@
 }
 
 .postBottom {
-    display: flex;
+    /*display: flex;*/
+    /*flex-direction: column;*/
     align-items: center;
     justify-content: space-between;
 }
@@ -141,48 +142,42 @@
 
 /*Here*/
 
-.postOptions {
-    display: none; /* Initially hidden */
+
+.postTopRight {
+    position: relative;
+}
+
+.threeverticaldots {
+    cursor: pointer;
+}
+
+.postOptionsDropdown {
     position: absolute;
-    top: 35px; /* Adjust to place below the MoreVert icon */
-    right: 10px; /* Adjust to align with the right side */
+    top: 30px; /* Adjust to position the dropdown below the 3 dots */
+    right: 0;
     background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
     width: 150px;
     z-index: 10;
-    font-family: "Outfit", Arial, sans-serif;
-    font-size: 14px;
-    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
     padding: 5px 0;
 }
 
-/* Display the dropdown when opened */
-.postTopRight .postOptions.show {
-    display: block;
-}
-
-/* Dropdown option styling */
-.postOptions option {
-    background-color: #fff;
-    color: #333;
+.postOptionItem {
     padding: 10px;
-    border: none;
-    cursor: pointer;
-    text-align: left;
     font-size: 14px;
-    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
 }
 
-/* Hover effect on options */
-.postOptions option:hover {
+.postOptionItem:hover {
     background-color: #f0f0f0;
-    color: #5858df;
 }
 
-/* Close the dropdown when an option is selected */
-.postOptions option:focus {
-    outline: none;
+.postOptionItem:active {
+    background-color: #e0e0e0;
 }
-
-

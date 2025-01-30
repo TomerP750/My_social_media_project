@@ -17,7 +17,7 @@ export function CommentsOnPost(props: PostProps): JSX.Element {
         feedService.getPostCommentsByPostId(props.post.id)
             .then(res => setPostComments(res))
             .catch(err => err.response.data)
-    }, []);
+    }, [postComments]);
 
     return (
         <div className="CommentsOnPost">
@@ -25,4 +25,5 @@ export function CommentsOnPost(props: PostProps): JSX.Element {
             {postComments && postComments.map(comment => <PostCommentCard key={comment.id} postComment={comment}/>)}
         </div>
     );
+
 }

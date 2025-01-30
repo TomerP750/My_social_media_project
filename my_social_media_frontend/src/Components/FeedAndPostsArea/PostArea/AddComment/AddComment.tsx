@@ -37,24 +37,6 @@ export function AddComment(props: AddCommentProps): JSX.Element {
         }
     }
 
-    // function handleAddComment() {
-    //     if (user) {
-    //         userService.addComment(new PostComment(
-    //             0,
-    //             props.post,
-    //             new Date(),
-    //             user,
-    //             content
-    //         )).then((newPostComment) => {
-    //             props.setPostComments((prevComments: PostComment[]) => [...prevComments, newPostComment]);
-    //             setContent('')
-    //
-    //         }).catch((err) => {
-    //             console.log(err)
-    //         })
-    //     }
-    // }
-
     function handleAddComment() {
         if (user) {
             const newComment = new PostComment(
@@ -64,8 +46,6 @@ export function AddComment(props: AddCommentProps): JSX.Element {
                 user,
                 content
             );
-
-            console.log("New Comment:", newComment);
 
             userService.addComment(newComment)
                 .then((addedComment) => {
@@ -92,6 +72,7 @@ export function AddComment(props: AddCommentProps): JSX.Element {
                     <input placeholder={"Add Comment"}
                            className={"addCommentInput"}
                            type="text"
+                           value={content}
                            onChange={handleChange}
                            onClick={handleClickOnAddComment}/>
                 </div>

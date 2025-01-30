@@ -7,7 +7,7 @@ import {User} from "../../../Models/User.ts";
 import {Filter} from "../Filter/Filter.tsx";
 import {Post} from "../../../Models/Post.ts";
 import feedService from "../../../Services/FeedService.ts";
-import {PostCard} from "../PostArea/PostCard/PostCard.tsx";
+import {PostCard} from "../PostArea/PostCardArea/PostCard/PostCard.tsx";
 
 export function Feed(): JSX.Element {
     

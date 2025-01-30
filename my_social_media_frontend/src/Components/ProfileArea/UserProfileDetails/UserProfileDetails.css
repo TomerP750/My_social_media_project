@@ -1,0 +1,20 @@
+.UserProfileDetails {
+	
+}
+
+.followUnfollowButton {
+    margin-bottom: 3rem;
+    margin-right: 1.5rem;
+    text-decoration: none;
+    padding: 15px;
+    border: none;
+    border-radius: 25px;
+    background-color: #125dd8;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.followUnfollowButton:hover {
+    background-color: #0a3380;
+}

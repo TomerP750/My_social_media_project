@@ -3,8 +3,9 @@ import {Route, Routes} from "react-router-dom";
 import {NotFound} from "../../PageInformationArea/NotFound/NotFound.tsx";
 import {Feed} from "../../FeedAndPostsArea/Feed/Feed.tsx";
 import {Login} from "../../AuthArea/Login/Login.tsx";
-import {AccountProfile} from "../../AccountProfile/AccountProfile.tsx";
+import {AccountProfile} from "../../ProfileArea/AccountProfile/AccountProfile.tsx";
 import {Register} from "../../AuthArea/Register/Register.tsx";
+import {EditProfile} from "../../ProfileArea/EditProfile/EditProfile.tsx";
 
 export function Routing(): JSX.Element {
     return (

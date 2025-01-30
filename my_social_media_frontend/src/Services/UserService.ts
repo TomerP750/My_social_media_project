@@ -25,7 +25,7 @@ class UserService {
         return (await axios.put("http://localhost:8080/user/updateuser", user));
     }
 
-    async followUser(followedId: number) {
+    async followUnfollowUser(followedId: number) {
         return (await axios.post(`http://localhost:8080/user/followunfollow/${followedId}`)).data;
     }
 
@@ -51,7 +51,7 @@ class UserService {
 
 
     async likeUnlike(post: Post) {
-        return (await axios.post("http://localhost:8080/user/post/likeunlike", post))
+        return (await axios.post("http://localhost:8080/user/post/likeunlike", post)).data;
     }
 
     async addComment(postComment: PostComment) {

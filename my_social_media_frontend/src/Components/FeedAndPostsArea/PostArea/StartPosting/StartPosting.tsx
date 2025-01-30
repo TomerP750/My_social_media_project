@@ -57,7 +57,12 @@ export function StartPosting(props: StartPostingProps): JSX.Element {
                 <div className="shareTop">
                     {/*<img className={"userImage"} src={props.user.image} alt=""/>*/}
                     <div className="userImage"></div>
-                    <input placeholder={"Whats on your mind?"} className={"startPostInput"} type="text" onChange={handleChange} onClick={handleClickOnStartPosting}/>
+                    <input placeholder={"Whats on your mind?"}
+                           className={"startPostInput"}
+                           type="text"
+                           value={content}
+                           onChange={handleChange}
+                           onClick={handleClickOnStartPosting}/>
                 </div>
                 <hr className={"startPositingHr"}/>
                 <div className="shareBottom">
