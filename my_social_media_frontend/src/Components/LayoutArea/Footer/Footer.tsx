@@ -1,6 +1,6 @@
 import "./Footer.css";
 import { NavLink } from "react-router-dom";  // Importing NavLink for internal routing
-import { Facebook, Twitter, Instagram, LinkedIn} from "@mui/icons-material";
+import {Facebook, Twitter, Instagram, LinkedIn, GitHub} from "@mui/icons-material";
 import XIcon from '@mui/icons-material/X';
 export function Footer(): JSX.Element {
     return (
@@ -53,21 +53,7 @@ export function Footer(): JSX.Element {
                         target="_blank"
                         className="social-media-link-icon"
                     >
-                        <Facebook />
-                    </NavLink>
-                    <NavLink
-                        to="#"
-                        target="_blank"
-                        className="social-media-link-icon"
-                    >
-                        <XIcon />
-                    </NavLink>
-                    <NavLink
-                        to="#"
-                        target="_blank"
-                        className="social-media-link-icon"
-                    >
-                        <Instagram />
+                        <GitHub />
                     </NavLink>
                     <NavLink
                         to="#"
@@ -78,7 +64,6 @@ export function Footer(): JSX.Element {
                     </NavLink>
                 </div>
 
-                {/* Email Subscription TextBox */}
                 <div className="subscribe">
                     <input
                         type="email"

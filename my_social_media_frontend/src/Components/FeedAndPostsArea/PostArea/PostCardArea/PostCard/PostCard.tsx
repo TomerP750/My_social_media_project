@@ -8,8 +8,11 @@ import {PostCenter} from "../PostCenter/PostCenter.tsx";
 import {PostTop} from "../PostTop/PostTop.tsx";
 import {getTokenState} from "../../../../../Util.ts";
 import {useNavigate} from "react-router-dom";
+import {User} from "../../../../../Models/User.ts";
+import userService from "../../../../../Services/UserService.ts";
 
 interface PostProps {
+    user: User
     post: Post
     onDelete: (postId: number) => void;
     // onLikeToggle: (postId: number) => void;
@@ -17,10 +20,16 @@ interface PostProps {
 
 export function PostCard(props: PostProps): JSX.Element {
 
-    const [postCommentCount, setPostCommentCount] = useState<number>(0);
+    let [numOfLikes, setNumOfLikes] = useState<number>(props.post.likeCount);
+    const [isLiked, setIsLiked] = useState<boolean>(false);
     const [openedComments, setOpenedComments] = useState<boolean>(false);
-
     const navigate = useNavigate();
+
+    useEffect(() => {
+        userService.checkIfPostLiked(props.post.id)
+            .then(res => setIsLiked(res))
+            .catch(err => err.response.data)
+    }, [props.post.id]);
 
     function handleOpenComments() {
         if (getTokenState()) {
@@ -30,14 +39,35 @@ export function PostCard(props: PostProps): JSX.Element {
         }
     }
 
+    function handleLikePost(liked: boolean) {
+        // Update the like status and like count
+        setIsLiked(liked);
+        setNumOfLikes(liked ? numOfLikes + 1 : numOfLikes - 1);
+    }
+
     return (
 
         <div className="postCard">
             <div className="postCardWrapper">
-                <PostTop post={props.post} onDelete={props.onDelete}/>
+                <PostTop
+                    user={props.user}
+                    post={props.post}
+                    onDelete={props.onDelete}
+                />
                 <PostCenter post={props.post}/>
-                <PostBottom post={props.post} handleOpenComments={handleOpenComments}/>
-                <PostActions post={props.post} handleOpenComments={handleOpenComments}/>
+                <PostBottom
+                    isLiked={isLiked}
+                    numOfLikes={numOfLikes}
+                    post={props.post}
+                    handleOpenComments={handleOpenComments}
+                />
+                <PostActions
+                    post={props.post}
+                    onLikePost={handleLikePost}
+                    isLiked={isLiked}
+                    numOfLikes={numOfLikes}
+                    handleOpenComments={handleOpenComments}
+                />
                 {openedComments &&
                     <div className="commentSection">
                         {/*<AddComment post={props.post}/>*/}

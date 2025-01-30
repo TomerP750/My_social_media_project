@@ -16,7 +16,6 @@ class FeedService {
     }
 
     async getPostCommentsByPostId(postId: number) {
-        console.log("post id: " + postId);
         return (await axios.get(`http://localhost:8080/feed/postcomments/${postId}`)).data
     }
 }

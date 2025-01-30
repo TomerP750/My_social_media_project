@@ -40,7 +40,6 @@ export function Feed(): JSX.Element {
             return dateA - dateB;
         }
     }
-
     const sortedPosts = [...posts].sort(comparePosts);
 
     function handlePostDeletion(postId: number) {
@@ -57,7 +56,7 @@ export function Feed(): JSX.Element {
             <Filter setFilter={setFilter}/>
             </div>
             <div className="Posts">
-                {sortedPosts ? sortedPosts.map(post => <PostCard onDelete={handlePostDeletion} post={post} key={post.id}/>) : <p>Loading...</p>}
+                {sortedPosts ? sortedPosts.map(post => <PostCard user={post.author} onDelete={handlePostDeletion} post={post} key={post.id}/>) : <p>Loading...</p>}
             </div>
         </div>
 

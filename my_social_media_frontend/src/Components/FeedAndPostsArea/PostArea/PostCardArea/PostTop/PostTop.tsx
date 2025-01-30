@@ -7,11 +7,14 @@ import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {Post} from "../../../../../Models/Post.ts";
 import {timeAgo} from "../../../../../Util.ts";
+import {User} from "../../../../../Models/User.ts";
 
 
 interface PostTopProps {
+    user: User
     post: Post
     onDelete: (postId: number) => void;
+    onEdit: (postId: number) => void;
 }
 
 export function PostTop(props: PostTopProps): JSX.Element {
@@ -25,7 +28,15 @@ export function PostTop(props: PostTopProps): JSX.Element {
     function handleChangeSelect(val: string) {
 
         if(val === "delete") {
-            props.onDelete(props.post.id);
+            const deleteSure = window.confirm("Are you sure you want to delete?")
+            if (deleteSure) {
+                props.onDelete(props.post.id);
+            }
+            setOpenedMoreVert(false);
+        }
+        if (val === "edit") {
+            props.onEdit(props.post.id)
+            setOpenedMoreVert(false);
         }
     }
 
@@ -56,33 +67,24 @@ export function PostTop(props: PostTopProps): JSX.Element {
                 ) : (
                     <img className={"profileImg"} src={defaultProfilePic} alt="img" />
                 )}
-                <span
-                    className={"postFullName"}
-                    onClick={handleFullNameClick}
-                >
+                <span className={"postFullName"} onClick={handleFullNameClick}>
                     {props.post.author.firstName} {props.post.author.lastName}
                 </span>
                 <span className={"postTime"}>{timeAgoText}</span>
             </div>
+
             <div className="postTopRight">
-                <MoreVert className={"threeverticaldots"} onClick={handleMoreVertClick} />
+
+                {(props.user.userName === props.post.author.userName) && <MoreVert className={"threeverticaldots"} onClick={handleMoreVertClick} />}
+
                 {authStore.getState().userName === props.post.author.userName && openedMoreVert && (
                     <div className="postOptionsDropdown">
-                        <div
-                            className="postOptionItem"
-                            onClick={() => handleChangeSelect("edit")}
-                        >
-                            Edit Post
-                        </div>
-                        <div
-                            className="postOptionItem"
-                            onClick={() => handleChangeSelect("delete")}
-                        >
-                            Delete Post
-                        </div>
+                        <div className="postOptionItem" onClick={() => handleChangeSelect("edit")}>Edit Post</div>
+                        <div className="postOptionItem" onClick={() => handleChangeSelect("delete")}>Delete Post</div>
                     </div>
                 )}
             </div>
+
         </div>
     );
 
