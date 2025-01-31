@@ -5,6 +5,7 @@ import app.mysocialmedia.Exceptions.ExistsException;
 import app.mysocialmedia.Exceptions.InvalidInputException;
 import app.mysocialmedia.Exceptions.NotLoggedInException;
 import app.mysocialmedia.Repositories.*;
+import app.mysocialmedia.UserProfileFeature.UserProfileRepository;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -24,13 +25,16 @@ public class UserService {
     private PostRepository postRepository;
     private PostLikesRepository postLikesRepository;
 
+    private UserProfileRepository userProfileRepository;
 
-    public UserService(FollowingRepository followingRepository, UserRepository userRepository, PostRepository postRepository, PostLikesRepository postLikesRepository, PostCommentRepository postCommentRepository) {
+
+    public UserService(FollowingRepository followingRepository, UserRepository userRepository, PostRepository postRepository, PostLikesRepository postLikesRepository, PostCommentRepository postCommentRepository, UserProfileRepository userProfileRepository) {
         this.followingRepository = followingRepository;
         this.userRepository = userRepository;
         this.postRepository = postRepository;
         this.postLikesRepository = postLikesRepository;
         this.postCommentRepository = postCommentRepository;
+        this.userProfileRepository = userProfileRepository;
     }
     public void login(String email, String password) {
         if (userRepository.existsByEmailAndPassword(email, password)) {
@@ -259,5 +263,27 @@ public class UserService {
             throw new NotLoggedInException("Not Logged In");
         }
     }
+
+
+//    TEST AREA FOR PROFILE BIO SECTION REMOVE IF I DONT NEED ANYMORE
+
+    public void editProfileBio(long id, String content) {
+        UserProfileDetails userProfileDetailsFromDb = userProfileRepository.findById(id).orElseThrow(()->new ExistsException("User not Found"));
+        if (isLoggedIn) {
+            if(userProfileDetailsFromDb.getAbout().length() > 1000) {
+                throw new InvalidInputException("Reached Maximum Characters");
+            }
+            if (userProfileDetailsFromDb.getUser().getId() != user.getId()) {
+                throw new NotLoggedInException("Please Login");
+            }
+            userProfileDetailsFromDb.setAbout(content);
+            userProfileRepository.save(userProfileDetailsFromDb);
+        } else {
+            throw new NotLoggedInException("Please Login");
+        }
+    }
+
+//    TEST AREA
+
 
 }

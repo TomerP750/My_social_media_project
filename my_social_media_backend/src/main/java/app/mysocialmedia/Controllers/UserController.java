@@ -109,4 +109,14 @@ public class UserController {
     }
 
 
+//    TEST AREA
+
+    @PutMapping("/bio/{userId}/{content}")
+    public void editAboutBio(@RequestHeader(value = "Authorization") String token, @PathVariable long userId,@PathVariable String content) throws SQLException {
+        getInstance(token).editProfileBio(userId, content);
+    }
+
+//    TEST AREA
+
+
 }

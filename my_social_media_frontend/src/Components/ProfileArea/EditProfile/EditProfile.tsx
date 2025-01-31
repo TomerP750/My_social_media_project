@@ -12,10 +12,8 @@ export function EditProfile(): JSX.Element {
     const params = useParams();
     const userName = params.userName!;
 
-    // State to handle the modal visibility
-    const [isModalOpen, setIsModalOpen] = useState(true); // Start with modal open
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-    // Fetch user data based on userName
     useEffect(() => {
         userService
             .getProfileByUserName(userName)
