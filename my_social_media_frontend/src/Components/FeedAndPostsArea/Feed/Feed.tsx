@@ -8,12 +8,14 @@ import {Filter} from "../Filter/Filter.tsx";
 import {Post} from "../../../Models/Post.ts";
 import feedService from "../../../Services/FeedService.ts";
 import {PostCard} from "../PostArea/PostCardArea/PostCard/PostCard.tsx";
+import {EditPost} from "../PostArea/EditPost/EditPost.tsx";
 
 export function Feed(): JSX.Element {
     
     const [user, setUser] = useState<User>();
     const [filter, setFilter] = useState<'Newest' | 'Oldest'>('Newest');
     const [posts, setPosts] = useState<Post[]>([]);
+
 
     useEffect(() => {
         feedService.getAllPosts()
@@ -48,6 +50,13 @@ export function Feed(): JSX.Element {
             .catch(err => err.response.data)
     }
 
+    function handlePostEdit(updatedPost: Post) {
+        setPosts(prevPosts =>
+            prevPosts.map(post => post.id === updatedPost.id ? updatedPost : post)
+        );
+    }
+
+
     return (
 
         <div className="Feed">
@@ -56,7 +65,12 @@ export function Feed(): JSX.Element {
             <Filter setFilter={setFilter}/>
             </div>
             <div className="Posts">
-                {sortedPosts ? sortedPosts.map(post => <PostCard user={post.author} onDelete={handlePostDeletion} post={post} key={post.id}/>) : <p>Loading...</p>}
+                {sortedPosts ? sortedPosts.map(post =>
+                    <PostCard
+                    user={post.author}
+                    onDelete={handlePostDeletion}
+                    onEdit={handlePostEdit}
+                    post={post} key={post.id}/>) : <p>Loading...</p>}
             </div>
         </div>
 

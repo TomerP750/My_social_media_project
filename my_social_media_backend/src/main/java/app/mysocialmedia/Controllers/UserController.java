@@ -78,8 +78,8 @@ public class UserController {
         return getInstance(token).addPost(post);
     }
 
-    @PutMapping("/post/editpost/{postId}")
-    public void editPost(@RequestHeader(value = "Authorization") String token,@PathVariable int postId, @RequestParam String content) throws SQLException {
+    @PutMapping("/post/editpost/{postId}/{content}")
+    public void editPost(@RequestHeader(value = "Authorization") String token,@PathVariable int postId, @PathVariable String content) throws SQLException {
         getInstance(token).editPost(postId, content);
     }
 

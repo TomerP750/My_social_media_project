@@ -8,22 +8,29 @@ import {useNavigate} from "react-router-dom";
 import {Post} from "../../../../../Models/Post.ts";
 import {timeAgo} from "../../../../../Util.ts";
 import {User} from "../../../../../Models/User.ts";
+import {EditPost} from "../../EditPost/EditPost.tsx";
+import userService from "../../../../../Services/UserService.ts";
 
 
 interface PostTopProps {
     user: User
     post: Post
     onDelete: (postId: number) => void;
-    onEdit: (postId: number) => void;
+    onEdit: (updatedPost: Post) => void;
 }
 
 export function PostTop(props: PostTopProps): JSX.Element {
 
     const [timeAgoText, setTimeAgoText] = useState<string>('');
     const [openedMoreVert, setOpenedMoreVert] = useState<boolean>(false);
-
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const navigate = useNavigate();
 
+
+    function handleSaveEdit(updatedPost: Post) {
+        props.onEdit(updatedPost);
+        setIsModalOpen(false);
+    }
 
     function handleChangeSelect(val: string) {
 
@@ -35,10 +42,16 @@ export function PostTop(props: PostTopProps): JSX.Element {
             setOpenedMoreVert(false);
         }
         if (val === "edit") {
-            props.onEdit(props.post.id)
+            setIsModalOpen(true)
             setOpenedMoreVert(false);
         }
     }
+
+    const handleCloseModal = () => {
+        setOpenedMoreVert(false)
+        setIsModalOpen(false);
+        navigate("/");
+    };
 
     function handleFullNameClick() {
         navigate(`/user/${props.post.author.userName}`)
@@ -60,6 +73,7 @@ export function PostTop(props: PostTopProps): JSX.Element {
     }, [props.post.datePosted]);
 
     return (
+        <>
         <div className="postTop">
             <div className="postTopLeft">
                 {authStore.getState().token ? (
@@ -86,6 +100,11 @@ export function PostTop(props: PostTopProps): JSX.Element {
             </div>
 
         </div>
+            {isModalOpen && <EditPost
+                onSaveEdit={handleSaveEdit}
+                onCloseModal={handleCloseModal}
+                post={props.post}/>}
+            </>
     );
 
 

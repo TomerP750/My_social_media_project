@@ -15,7 +15,8 @@ interface PostProps {
     user: User
     post: Post
     onDelete: (postId: number) => void;
-    // onLikeToggle: (postId: number) => void;
+    onEdit: (updatedPost: Post) => void;
+
 }
 
 export function PostCard(props: PostProps): JSX.Element {
@@ -53,6 +54,7 @@ export function PostCard(props: PostProps): JSX.Element {
                     user={props.user}
                     post={props.post}
                     onDelete={props.onDelete}
+                    onEdit={props.onEdit}
                 />
                 <PostCenter post={props.post}/>
                 <PostBottom

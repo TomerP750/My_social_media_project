@@ -8,6 +8,7 @@ import {PermMedia} from "@mui/icons-material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import {getTokenState} from "../../../../Util.ts";
 import {useNavigate} from "react-router-dom";
+import TagIcon from '@mui/icons-material/Tag';
 
 
 interface StartPostingProps {
@@ -68,12 +69,16 @@ export function StartPosting(props: StartPostingProps): JSX.Element {
                 <div className="shareBottom">
                     <div className="shareOptions">
                         <div className="shareOption">
-                            <PermMedia className={"shareOptionIcon"} sx={{color:"tomato"}}/>
+                            <PermMedia className={"shareOptionIcon"} sx={{color: "black"}}/>
                             <span className={"shareOptionText"}>Image</span>
                         </div>
                         <div className="shareOption">
-                            <LocationOnIcon className={"shareOptionIcon"} sx={{color:"green"}}/>
+                            <LocationOnIcon className={"shareOptionIcon"} sx={{color: "black"}}/>
                             <span className={"shareOptionText"}>Location</span>
+                        </div>
+                        <div className="shareOption">
+                            <TagIcon className={"shareOptionIcon"} sx={{color: "black"}}/>
+                            <span className={"shareOptionText"}>Tag</span>
                         </div>
                     </div>
                     <button className={"postButton"} onClick={handlePost}>Post</button>

@@ -41,8 +41,8 @@ class UserService {
         return (await axios.post<Post>("http://localhost:8080/user/post/addpost", post)).data;
     }
 
-    async editPost(postId: number) {
-        return (await axios.put(`http://localhost:8080/user/post/editpost/${postId}`));
+    async editPost(postId: number, content: string) {
+        return (await axios.put(`http://localhost:8080/user/post/editpost/${postId}/${content}`));
     }
 
     async deletePost(postId: number) {
