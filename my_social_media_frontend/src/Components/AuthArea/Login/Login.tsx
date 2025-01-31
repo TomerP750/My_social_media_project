@@ -1,9 +1,8 @@
 import "./Login.css";
-import {useForm} from "react-hook-form";
-import {User} from "../../../Models/User.ts";
 import authService from "../../../Services/AuthService.ts";
 import {NavLink, useNavigate} from "react-router-dom";
 import {authSlice, authStore, login} from "../../../Redux/AuthSlice.ts";
+import BusinessIcon from '@mui/icons-material/Business';
 
 export function Login(): JSX.Element {
 
@@ -24,13 +23,20 @@ export function Login(): JSX.Element {
 
     return (
         <div className="Login">
-			<form onSubmit={handleLogin}>
-                <div className={"loginTitle"}>Welcome Back</div>
-                <input type="email" placeholder="Email" required onChange={e => email = e.target.value}/>
-                <input type="password" placeholder={"Password"} required onChange={e => password = e.target.value}/>
-                <NavLink className={"dontHaveAccount"} to={"/register"}>Dont have account? <span className={"signUp"}>Sign up</span></NavLink>
-                <button type={"submit"}>Login</button>
-            </form>
+            <div className="loginFormLeftSection">
+                <div className="loginFormLeftSectionContent">
+                <BusinessIcon className={"loginLeftSectionLogo"}/>
+                <h1>MSM</h1>
+                </div>
+            </div>
+                <form onSubmit={handleLogin}>
+                    <div className={"loginTitle"}>Welcome Back</div>
+                    <input type="email" placeholder="Email" required onChange={e => email = e.target.value}/>
+                    <input type="password" placeholder={"Password"} required onChange={e => password = e.target.value}/>
+                    <NavLink className={"dontHaveAccount"} to={"/register"}>Don't have an account? <span
+                        className={"signUp"}>Sign up</span></NavLink>
+                    <button type={"submit"}>Login</button>
+                </form>
         </div>
     );
 }
