@@ -16,20 +16,19 @@ export function NavbarRight(): JSX.Element {
     const [menuOpened, setMenuOpened] = useState<boolean>(false);
     const navigate = useNavigate();
 
-    const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const selectedOption = event.target.value;
+    function handleChangeSelect(val: string) {
 
-        if (selectedOption === "logout") {
-            handleLogOut();
-        }
-        if (selectedOption === "settings") {
-            navigate("/settings")
-        }
-        if (selectedOption === "account") {
-            navigate(`/account/${authStore.getState().userName}`)
-        }
-        setMenuOpened(false);
-    };
+            if (val === "logout") {
+                handleLogOut();
+            }
+            if (val === "settings") {
+                navigate("/settings")
+            }
+            if (val === "account") {
+                navigate(`/account/${authStore.getState().userName}`)
+            }
+            setMenuOpened(false);
+    }
 
     function handleLogOut() {
         authService.logout()
@@ -70,14 +69,15 @@ export function NavbarRight(): JSX.Element {
 
             {menuOpened && getTokenState() && (
                 <div className={`dropdown ${menuOpened ? "visible" : ""}`}>
-                    <select onChange={handleSelectChange} className="dropdownSelect">
-                        <option value="">Select</option>
-                        <option value="account">Account</option>
-                        <option value="settings">Settings</option>
-                        <option value="logout">Log out</option>
-                    </select>
+                    <div className="navBarRightDropdown">
+                        <div className="navBarRightItem" onClick={() => handleChangeSelect("account")}>Account</div>
+                        <div className="navBarRightItem" onClick={() => handleChangeSelect("settings")}>Settings</div>
+                        <div className="navBarRightItem" onClick={() => handleChangeSelect("logout")}>Logout</div>
+                    </div>
                 </div>
             )}
+
+
         </div>
     )
 }

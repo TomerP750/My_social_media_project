@@ -16,7 +16,7 @@ export function EditPost(props: EditPostProps): JSX.Element {
         setContent(event.target.value);
     }
 
-    
+
     function handleSaveEdit() {
         userService.editPost(props.post.id, content)
             .then(() => {

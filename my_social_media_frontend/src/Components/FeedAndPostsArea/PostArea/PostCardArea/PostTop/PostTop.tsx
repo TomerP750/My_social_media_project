@@ -72,6 +72,7 @@ export function PostTop(props: PostTopProps): JSX.Element {
         return () => clearInterval(intervalId);
     }, [props.post.datePosted]);
 
+
     return (
         <>
         <div className="postTop">
@@ -89,7 +90,7 @@ export function PostTop(props: PostTopProps): JSX.Element {
 
             <div className="postTopRight">
 
-                {(props.user.userName === props.post.author.userName) && <MoreVert className={"threeverticaldots"} onClick={handleMoreVertClick} />}
+                {authStore.getState().userName === props.post.author.userName && <MoreVert className={"threeverticaldots"} onClick={handleMoreVertClick} />}
 
                 {authStore.getState().userName === props.post.author.userName && openedMoreVert && (
                     <div className="postOptionsDropdown">
