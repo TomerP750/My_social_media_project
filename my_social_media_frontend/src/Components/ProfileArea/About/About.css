@@ -7,6 +7,16 @@
     width: 100%;
 }
 
+.aboutBioContent {
+    width: 100%;
+    margin-left: 2rem;
+}
+
+.aboutBioTitle {
+    margin-left: 1rem;
+}
+
+
 .aboutTop {
     display: flex;
     align-items: center;
@@ -17,4 +27,14 @@
 .aboutBioEditIcon {
     cursor: pointer;
     font-size: 2rem !important;
+    margin-right: 1rem;
+}
+
+.About .edit-textarea::placeholder {
+    font-family: Outfit;
+    font-size: 18px;
+}
+
+.About button {
+    border-radius: 20px;
 }

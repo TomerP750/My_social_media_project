@@ -3,7 +3,7 @@ package app.mysocialmedia.Beans;
 import jakarta.persistence.*;
 
 @Entity
-public class UserProfileDetails {
+public class UserProfileBio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -14,10 +14,10 @@ public class UserProfileDetails {
     private String banner;
 
 
-    public UserProfileDetails() {
+    public UserProfileBio() {
     }
 
-    public UserProfileDetails(User user, String about, String banner) {
+    public UserProfileBio(User user, String about, String banner) {
         this.user = user;
         this.about = about;
         this.banner = banner;

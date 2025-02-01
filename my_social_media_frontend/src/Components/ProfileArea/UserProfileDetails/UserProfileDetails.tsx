@@ -16,7 +16,7 @@ export function UserProfileDetails(props: UserProfileDetailsProps): JSX.Element 
     const [followings, setFollowings] = useState<number>(0);
     const [followed, setFollowed] = useState<boolean>(false);
     const [user, setUser] = useState<User>();
-    const [editProfileModalOpened, setEditProfileModalOpened] = useState<boolean>(false);
+    const [editProfileModalOpened, setEditProfileModalOpened] = useState<boolean>(true);
 
     function handleEditProfileModalOpened() {
         setEditProfileModalOpened(!editProfileModalOpened);

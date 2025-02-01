@@ -26,8 +26,8 @@
 }
 
 .commentAuthor-image {
-    width: 34px;
-    height: 34px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     margin-right: 15px;
     object-fit: cover;
@@ -63,5 +63,12 @@
     color: #333;
     line-height: 1.6;
     margin-top: 10px;
+    margin-left: 2rem;
+}
+
+.postCommentImageAndFullName {
+    display: flex;
+    align-items: center;
+    margin-left: 2rem;
 }
 

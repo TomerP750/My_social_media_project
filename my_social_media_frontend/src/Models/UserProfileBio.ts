@@ -1,7 +1,7 @@
 import {User} from "./User.ts";
 
 
-export class UserProfileDetails {
+export class UserProfileBio {
     id: number
     user: User
     about: string

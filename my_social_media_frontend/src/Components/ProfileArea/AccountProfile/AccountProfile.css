@@ -63,7 +63,7 @@
     margin-left: 0.8rem;
     width: 150px;
     height: 150px;
-    border: none;
+    border: 3px solid white;
     border-radius: 50%;
     background-color: #0a3380;
 }

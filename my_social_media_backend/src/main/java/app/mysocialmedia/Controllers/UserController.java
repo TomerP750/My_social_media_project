@@ -1,9 +1,6 @@
 package app.mysocialmedia.Controllers;
 
-import app.mysocialmedia.Beans.Following;
-import app.mysocialmedia.Beans.Post;
-import app.mysocialmedia.Beans.PostComment;
-import app.mysocialmedia.Beans.User;
+import app.mysocialmedia.Beans.*;
 import app.mysocialmedia.Security.SessionManager;
 import app.mysocialmedia.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -112,8 +109,13 @@ public class UserController {
 //    TEST AREA
 
     @PutMapping("/bio/{userId}/{content}")
-    public void editAboutBio(@RequestHeader(value = "Authorization") String token, @PathVariable long userId,@PathVariable String content) throws SQLException {
-        getInstance(token).editProfileBio(userId, content);
+    public UserProfileBio editAboutBio(@RequestHeader(value = "Authorization") String token, @PathVariable long userId,@PathVariable String content) throws SQLException {
+        return getInstance(token).editProfileAboutBio(userId, content);
+    }
+
+    @GetMapping("/bio/{userId}")
+    public UserProfileBio getProfileBio(@RequestHeader(value = "Authorization") String token, @PathVariable long userId) throws SQLException {
+        return getInstance(token).getUserProfileBio(userId);
     }
 
 //    TEST AREA

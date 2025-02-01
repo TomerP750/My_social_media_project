@@ -69,11 +69,11 @@ class UserService {
 //     TEST SECTION FOR USERPROFILEDETAILS - REMOVE THIS IF I DONT WANT TO WORK WITH IT ANYMORE
 
     async getUserProfileDetailsByUserId(userId: number) {
-        return (await axios.get(`http://localhost:8080/bio/details/${userId}`)).data
+        return (await axios.get(`http://localhost:8080/user/bio/${userId}`)).data
     }
 
     async editUserProfileAboutBio(userId: number, content: string) {
-        return (await axios.put(`http://localhost:8080/user/bio/${userId}/${content}`))
+        return (await axios.put(`http://localhost:8080/user/bio/${userId}/${content}`)).data
     }
 
 

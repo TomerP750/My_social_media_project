@@ -2,20 +2,17 @@ import "./About.css";
 import {useEffect, useState} from "react";
 import userService from "../../../Services/UserService.ts";
 import {User} from "../../../Models/User.ts";
-import {UserProfileDetails} from "../../../Models/UserProfileDetails.ts";
+import {UserProfileBio} from "../../../Models/UserProfileBio.ts";
 import EditIcon from '@mui/icons-material/Edit';
 import {useNavigate} from "react-router-dom";
-import {useForm} from "react-hook-form";
-import {Post} from "../../../Models/Post.ts";
 
 
 interface AboutProps {
     user: User
-    onSaveEdit: (updatedAbout: string) => void
 }
 export function About(props: AboutProps): JSX.Element {
 
-    const [bio, setBio] = useState<UserProfileDetails>();
+    const [bio, setBio] = useState<UserProfileBio>();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const navigate = useNavigate();
 
@@ -28,14 +25,19 @@ export function About(props: AboutProps): JSX.Element {
 
     useEffect(() => {
         userService.getUserProfileDetailsByUserId(props.user.id)
-            .then(res => setBio(res))
+            .then(res =>{
+                setBio(res)
+                setContent(res.about)
+            })
             .catch(err => err.response.data)
     }, []);
 
-    const handleSave = () => {
-        props.onSaveEdit(content);
+    function handleAboutBioEditSave() {
+        userService.editUserProfileAboutBio(props.user.id, content)
+            .then(res => setBio(res))
+            .catch(err => err.response.data)
         setIsModalOpen(false);
-    };
+    }
 
     return (
         <div className="About">
@@ -64,7 +66,7 @@ export function About(props: AboutProps): JSX.Element {
                         ></textarea>
 
                         <div className="modal-actions">
-                            <button className="save-btn" onClick={handleSave}>Save</button>
+                            <button className="save-btn" onClick={handleAboutBioEditSave}>Save</button>
                             <button className="cancel-btn" onClick={() => setIsModalOpen(false)}>Cancel</button>
                         </div>
                     </div>
@@ -72,4 +74,5 @@ export function About(props: AboutProps): JSX.Element {
             )}
         </div>
     )
+
 }

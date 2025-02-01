@@ -6,7 +6,6 @@ import userService from "../../../Services/UserService.ts";
 import test from "../../../assets/defaultProfilepic.png"
 import {UserProfileDetails} from "../UserProfileDetails/UserProfileDetails.tsx";
 import {About} from "../About/About.tsx";
-import {useForm} from "react-hook-form";
 export function AccountProfile(): JSX.Element {
 
     const [user, setUser] = useState<User>();
@@ -20,27 +19,6 @@ export function AccountProfile(): JSX.Element {
             })
             .catch(err => err.response.data)
     }, []);
-
-    const handleSaveEdit = (updatedAbout: string) => {
-        if (user) {
-            // Update the about content in the local state
-            const updatedUser = { ...user, about: updatedAbout };
-
-            // Update the state with the new user info
-            setUser(updatedUser);
-
-            // Call the service to update the backend
-            userService.editUserProfileAboutBio(user.id, updatedAbout)
-                .then(() => {
-                    console.log("About content updated successfully");
-                })
-                .catch((err) => {
-                    console.error("Error updating about content", err);
-                });
-        }
-    };
-
-
 
     return (
         <>
@@ -57,9 +35,7 @@ export function AccountProfile(): JSX.Element {
 
         </div>
             {/*TEST AREA*/}
-            <div className="aboutBioContainer">
-            {user && <About onSaveEdit={handleSaveEdit} user={user}/>}
-            </div>
+            {user && <About user={user}/>}
             {/*TEST AREA*/}
             </>
     );
