@@ -74,9 +74,9 @@ export function UserProfileDetails(props: UserProfileDetailsProps): JSX.Element 
             {modalOpened && modalType === "edit" && (
                 <EditProfile onClose={() => setModalOpened(false)} />
             )}
-            {/*{modalOpened && modalType === "followers" && (*/}
-            {/*    <FollowersModal onClose={() => setModalOpened(false)/>*/}
-            {/*)}*/}
+            {modalOpened && modalType === "followers" && (
+                <FollowersModal onClose={() => setModalOpened(false)}/>
+            )}
             {modalOpened && modalType === "followings" && (
                 <FollowingsModal onClose={() => setModalOpened(false)}/>
             )}
