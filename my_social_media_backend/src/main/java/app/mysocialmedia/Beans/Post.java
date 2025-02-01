@@ -23,6 +23,8 @@ public class Post {
     private String content;
     private long likeCount;
 
+    private boolean isEdited;
+
     public Post() {
     }
 
@@ -32,6 +34,16 @@ public class Post {
         this.content = content;
         this.likeCount = likeCount;
     }
+
+    public Post(Date datePosted, User author, String content, long likeCount, boolean isEdited) {
+        this.datePosted = datePosted;
+        this.author = author;
+        this.content = content;
+        this.likeCount = likeCount;
+        this.isEdited = isEdited;
+    }
+
+
 
     public long getId() {
         return id;
@@ -67,6 +79,14 @@ public class Post {
 
     public void setAuthor(User author) {
         this.author = author;
+    }
+
+    public boolean isEdited() {
+        return isEdited;
+    }
+
+    public void setEdited(boolean edited) {
+        isEdited = edited;
     }
 
     @Override

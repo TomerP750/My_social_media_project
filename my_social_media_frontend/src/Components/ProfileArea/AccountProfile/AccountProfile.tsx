@@ -6,6 +6,8 @@ import userService from "../../../Services/UserService.ts";
 import test from "../../../assets/defaultProfilepic.png"
 import {UserProfileDetails} from "../UserProfileDetails/UserProfileDetails.tsx";
 import {About} from "../About/About.tsx";
+import EditIcon from "@mui/icons-material/Edit";
+import {authStore} from "../../../Redux/AuthSlice.ts";
 export function AccountProfile(): JSX.Element {
 
     const [user, setUser] = useState<User>();
@@ -25,6 +27,7 @@ export function AccountProfile(): JSX.Element {
         <div className="AccountProfile">
             <div className="banner">
                 <img src={test}/>
+                {user && (authStore.getState().userName === user.userName) && <EditIcon className={"banner-edit-icon"}/>}
             </div>
             <div className="profilePageAvatar"></div>
 

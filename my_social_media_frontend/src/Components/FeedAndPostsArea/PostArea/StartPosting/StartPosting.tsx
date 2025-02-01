@@ -31,6 +31,7 @@ export function StartPosting(props: StartPostingProps): JSX.Element {
              userService.addPost(new Post(
                 0,
                 new Date(),
+                false,
                 props.user,
                 content,
                 0
@@ -39,7 +40,7 @@ export function StartPosting(props: StartPostingProps): JSX.Element {
                  setContent('')
 
             }).catch((err) => {
-                console.log(err)
+                alert(err.response.data)
             })
         }
 

@@ -1,0 +1,8 @@
+.FollowingsModal {
+	display: flex;
+    flex-direction: column;
+}
+
+.FollowingsModal h1 {
+    margin-bottom: 4rem;
+}

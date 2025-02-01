@@ -1,10 +1,12 @@
 import "./UserProfileDetails.css";
 import {authStore} from "../../../Redux/AuthSlice.ts";
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import {User} from "../../../Models/User.ts";
 import {useEffect, useState} from "react";
 import userService from "../../../Services/UserService.ts";
 import {EditProfile} from "../EditProfile/EditProfile.tsx";
+import {FollowersModal} from "../FollowersModal/FollowersModal.tsx";
+import {FollowingsModal} from "../FollowingsModal/FollowingsModal.tsx";
 
 
 interface UserProfileDetailsProps {
@@ -16,17 +18,12 @@ export function UserProfileDetails(props: UserProfileDetailsProps): JSX.Element 
     const [followings, setFollowings] = useState<number>(0);
     const [followed, setFollowed] = useState<boolean>(false);
     const [user, setUser] = useState<User>();
-    const [editProfileModalOpened, setEditProfileModalOpened] = useState<boolean>(true);
+    const [modalOpened, setModalOpened] = useState<boolean>(false);
+    const [modalType, setModalType] = useState<string>('');
 
-    function handleEditProfileModalOpened() {
-        setEditProfileModalOpened(!editProfileModalOpened);
-    }
-    function handleFollowersStatClicked() {
-
-    }
-
-    function handleFollowingStatClicked() {
-
+    function handleModalOpen(type: string) {
+        setModalType(type);
+        setModalOpened(true);
     }
 
     function handleFollowUnfollow(id: number) {
@@ -57,16 +54,16 @@ export function UserProfileDetails(props: UserProfileDetailsProps): JSX.Element 
                 <div className="fullNameAndFollowStats">
                     <span className="fullName">{props.user && props.user.firstName} {props.user && props.user.lastName}</span>
                     <div className="followStats">
-                            <span onClick={handleFollowersStatClicked}
+                            <span onClick={()=>handleModalOpen("followers")}
                                   className="followers">{followers} Followers</span>
-                        <span onClick={handleFollowingStatClicked}
+                        <span onClick={()=>handleModalOpen("followings")}
                               className="followings">{followings} Followings</span>
                     </div>
                 </div>
             </div>
             <div className="rightSection">
                 {user && (props.user && props.user.id) === user.id ?
-                    <div onClick={handleEditProfileModalOpened}
+                    <div onClick={()=>handleModalOpen("edit")}
                          className={"editProfileButton"}>Edit Profile</div>
                     :
                     <div onClick={()=>handleFollowUnfollow(props.user.id)} className={"followUnfollowButton"}>
@@ -74,7 +71,17 @@ export function UserProfileDetails(props: UserProfileDetailsProps): JSX.Element 
                     </div>}
             </div>
 
-            {editProfileModalOpened && <EditProfile/>}
+            {modalOpened && modalType === "edit" && (
+                <EditProfile onClose={() => setModalOpened(false)} />
+            )}
+            {/*{modalOpened && modalType === "followers" && (*/}
+            {/*    <FollowersModal onClose={() => setModalOpened(false)/>*/}
+            {/*)}*/}
+            {modalOpened && modalType === "followings" && (
+                <FollowingsModal onClose={() => setModalOpened(false)}/>
+            )}
+
+
         </div>
     );
 }

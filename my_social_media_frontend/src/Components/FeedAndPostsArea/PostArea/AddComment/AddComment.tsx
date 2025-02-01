@@ -10,7 +10,6 @@ import AddReactionOutlinedIcon from '@mui/icons-material/AddReactionOutlined';
 import TagOutlinedIcon from '@mui/icons-material/TagOutlined';
 
 interface AddCommentProps {
-    user: User
     post: Post
     setPostComments: React.Dispatch<React.SetStateAction<any>>;
 }
@@ -40,7 +39,7 @@ export function AddComment(props: AddCommentProps): JSX.Element {
     function handleAddComment() {
         if (user) {
             const newComment = new PostComment(
-                0,             // Assuming the ID is generated on the server
+                0,
                 props.post,
                 new Date(),
                 user,
@@ -58,6 +57,7 @@ export function AddComment(props: AddCommentProps): JSX.Element {
                 .catch((err) => {
                     console.log("Error adding comment:", err); // Log the error if any
                 });
+
         }
     }
 

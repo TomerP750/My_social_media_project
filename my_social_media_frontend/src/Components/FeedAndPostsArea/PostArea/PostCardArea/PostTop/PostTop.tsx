@@ -9,7 +9,6 @@ import {Post} from "../../../../../Models/Post.ts";
 import {timeAgo} from "../../../../../Util.ts";
 import {User} from "../../../../../Models/User.ts";
 import {EditPost} from "../../EditPost/EditPost.tsx";
-import userService from "../../../../../Services/UserService.ts";
 
 
 interface PostTopProps {
@@ -27,6 +26,7 @@ export function PostTop(props: PostTopProps): JSX.Element {
     const navigate = useNavigate();
 
 
+
     function handleSaveEdit(updatedPost: Post) {
         props.onEdit(updatedPost);
         setIsModalOpen(false);
@@ -35,7 +35,7 @@ export function PostTop(props: PostTopProps): JSX.Element {
     function handleChangeSelect(val: string) {
 
         if(val === "delete") {
-            const deleteSure = window.confirm("Are you sure you want to delete?")
+            const deleteSure = window.confirm("Are you sure you want to delete the post?")
             if (deleteSure) {
                 props.onDelete(props.post.id);
             }
@@ -73,6 +73,8 @@ export function PostTop(props: PostTopProps): JSX.Element {
     }, [props.post.datePosted]);
 
 
+
+
     return (
         <>
         <div className="postTop">
@@ -86,6 +88,7 @@ export function PostTop(props: PostTopProps): JSX.Element {
                     {props.post.author.firstName} {props.post.author.lastName}
                 </span>
                 <span className={"postTime"}>{timeAgoText}</span>
+                {props.post.isEdited && <span className="edited-tag">(edited)</span>}
             </div>
 
             <div className="postTopRight">

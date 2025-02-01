@@ -5,6 +5,7 @@ import {User} from "../../../Models/User.ts";
 import {UserProfileBio} from "../../../Models/UserProfileBio.ts";
 import EditIcon from '@mui/icons-material/Edit';
 import {useNavigate} from "react-router-dom";
+import {authStore} from "../../../Redux/AuthSlice.ts";
 
 
 interface AboutProps {
@@ -43,10 +44,10 @@ export function About(props: AboutProps): JSX.Element {
         <div className="About">
             <div className="aboutTop">
                 <h1 className={"aboutBioTitle"}>About</h1>
-                <EditIcon
+                {authStore.getState().userName === props.user.userName && <EditIcon
                     className={"aboutBioEditIcon"}
-                    onClick={() => setIsModalOpen(true)} // Open modal on edit click
-                />
+                    onClick={() => setIsModalOpen(true)}
+                />}
             </div>
 
             <div className="aboutBioContent">

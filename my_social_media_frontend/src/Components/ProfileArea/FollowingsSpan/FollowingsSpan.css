@@ -1,0 +1,20 @@
+.FollowingsSpan {
+	
+}
+
+.followingUser {
+    margin-bottom: 1rem;
+}
+
+.followingModalLastName {
+    margin-left: 0.5rem;
+}
+
+.fullName {
+    cursor: pointer;
+    font-size: 22px;
+}
+
+.fullName:hover {
+    text-decoration: underline;
+}

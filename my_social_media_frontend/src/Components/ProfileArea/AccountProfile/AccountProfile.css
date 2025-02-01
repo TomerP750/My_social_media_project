@@ -13,6 +13,16 @@
     background-color: cyan;
 }
 
+.banner-edit-icon {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    background-color: white;
+    border-radius: 50%;
+    padding: 8px;
+    cursor: pointer;
+}
+
 .banner img {
     width: 100%;
     height: 250px;

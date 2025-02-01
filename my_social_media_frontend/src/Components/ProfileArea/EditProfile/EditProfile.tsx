@@ -5,14 +5,19 @@ import {useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import userService from "../../../Services/UserService.ts";
 
-export function EditProfile(): JSX.Element {
+
+interface EditProfileProps {
+    onClose: () => void
+}
+
+export function EditProfile(props: EditProfileProps): JSX.Element {
 
     const { register, handleSubmit, setValue } = useForm<User>();
     const navigate = useNavigate();
     const params = useParams();
     const userName = params.userName!;
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    // const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         userService
@@ -35,17 +40,16 @@ export function EditProfile(): JSX.Element {
             .catch(err => err.response.data);
     }
 
-    const closeModal = () => {
-        setIsModalOpen(false);
-        navigate(`/user/${userName}`);
-    };
+    // const closeModal = () => {
+    //     setIsModalOpen(false);
+    //     navigate(`/user/${userName}`);
+    // };
 
     return (
         <>
-            {isModalOpen && (
                 <div className="modal">
                     <div className="modal-content">
-            <span className="close" onClick={closeModal}>&times;</span>
+            <span className="close" onClick={props.onClose}>&times;</span>
                         <h2>Edit Profile</h2>
                         <form onSubmit={handleSubmit(sendUser)}>
                             <input
@@ -76,14 +80,13 @@ export function EditProfile(): JSX.Element {
                                 <button type="submit" className="save-button">
                                     Save
                                 </button>
-                                <button type="button" className="cancel-button" onClick={closeModal}>
+                                <button type="button" className="cancel-button" onClick={props.onClose}>
                                     Cancel
                                 </button>
                             </div>
                         </form>
                     </div>
                 </div>
-            )}
         </>
     );
 

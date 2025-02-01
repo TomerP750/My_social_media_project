@@ -59,8 +59,8 @@ public class UserController {
     }
 
     @GetMapping("followings")
-    public List<User> showAllFollowings(@RequestHeader(value = "Authorization") String token,User user) throws SQLException {
-        return getInstance(token).getAllFollowings(user);
+    public List<User> showAllFollowings(@RequestHeader(value = "Authorization") String token) throws SQLException {
+        return getInstance(token).getAllFollowings();
     }
 
     // Posts
@@ -74,10 +74,10 @@ public class UserController {
     public Post addPost(@RequestHeader(value = "Authorization") String token,@RequestBody Post post) throws SQLException {
         return getInstance(token).addPost(post);
     }
-
+// maybe return back to void
     @PutMapping("/post/editpost/{postId}/{content}")
-    public void editPost(@RequestHeader(value = "Authorization") String token,@PathVariable int postId, @PathVariable String content) throws SQLException {
-        getInstance(token).editPost(postId, content);
+    public boolean editPost(@RequestHeader(value = "Authorization") String token,@PathVariable int postId, @PathVariable String content) throws SQLException {
+        return getInstance(token).editPost(postId, content);
     }
 
     @DeleteMapping("/post/deletepost/{postId}")
@@ -96,13 +96,13 @@ public class UserController {
     }
 
     @PostMapping("/post/comment")
-    public void addComment(@RequestHeader(value = "Authorization") String token,@RequestBody PostComment comment) throws SQLException {
-        getInstance(token).commentOnPost(comment);
+    public PostComment addComment(@RequestHeader(value = "Authorization") String token,@RequestBody PostComment comment) throws SQLException {
+        return getInstance(token).commentOnPost(comment);
     }
 
-    @DeleteMapping("/post/deletecomment")
-    public void deletePostComment(@RequestHeader(value = "Authorization") String token,PostComment comment) throws SQLException {
-        getInstance(token).deletePostComment(comment);
+    @DeleteMapping("/post/deletecomment/{postCommentId}")
+    public void deletePostComment(@RequestHeader(value = "Authorization") String token,@PathVariable long postCommentId) throws SQLException {
+        getInstance(token).deletePostComment(postCommentId);
     }
 
 
@@ -116,6 +116,11 @@ public class UserController {
     @GetMapping("/bio/{userId}")
     public UserProfileBio getProfileBio(@RequestHeader(value = "Authorization") String token, @PathVariable long userId) throws SQLException {
         return getInstance(token).getUserProfileBio(userId);
+    }
+
+    @PutMapping("/bio/{userId}/{bannerUrl}")
+    public UserProfileBio editBannerBio(@RequestHeader(value = "Authorization") String token, @PathVariable long userId,@PathVariable String bannerUrl) throws SQLException {
+        return getInstance(token).editProfileBanner(userId, bannerUrl);
     }
 
 //    TEST AREA

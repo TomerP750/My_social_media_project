@@ -42,7 +42,7 @@ class UserService {
     }
 
     async editPost(postId: number, content: string) {
-        return (await axios.put(`http://localhost:8080/user/post/editpost/${postId}/${content}`));
+        return (await axios.put(`http://localhost:8080/user/post/editpost/${postId}/${content}`)).data;
     }
 
     async deletePost(postId: number) {
@@ -55,12 +55,12 @@ class UserService {
     }
 
     async addComment(postComment: PostComment) {
-        return(await axios.post("http://localhost:8080/user/post/comment", postComment));
+        return(await axios.post("http://localhost:8080/user/post/comment", postComment)).data;
     }
 
-    // async deleteComment(postComment: PostCommentCard) {
-    //     return (await axios.delete("http://localhost:8080/user/post/deletecomment", postComment));
-    // }
+    async deleteComment(postCommentId: number) {
+        return (await axios.delete(`http://localhost:8080/user/post/deletecomment/${postCommentId}`));
+    }
 
     async checkIfPostLiked(postId: number) {
         return (await axios.get(`http://localhost:8080/user/post/checkifpostliked/${postId}`)).data;
@@ -74,6 +74,10 @@ class UserService {
 
     async editUserProfileAboutBio(userId: number, content: string) {
         return (await axios.put(`http://localhost:8080/user/bio/${userId}/${content}`)).data
+    }
+
+    async editBannerBio(userId: number, bannerUrl: string) {
+        return (await axios.put(`http://localhost:8080/user/bio/${userId}/${bannerUrl}`)).data
     }
 
 

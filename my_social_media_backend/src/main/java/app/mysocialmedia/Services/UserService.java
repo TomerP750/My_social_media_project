@@ -114,7 +114,7 @@ public class UserService {
         }
     }
 
-    public void editPost(long id, String content) {
+    public boolean editPost(long id, String content) {
         Post postFromDB = postRepository.findById(id).orElseThrow(()->new ExistsException("Post Not Found"));
         if (isLoggedIn) {
             if(postFromDB.getContent().length() > 1000) {
@@ -124,7 +124,9 @@ public class UserService {
                 throw new NotLoggedInException("Please Login");
             }
             postFromDB.setContent(content);
+            postFromDB.setEdited(true);
             postRepository.save(postFromDB);
+            return true;
         } else {
             throw new NotLoggedInException("Please Login");
         }
@@ -181,22 +183,29 @@ public class UserService {
         return found;
     }
 
-    public void commentOnPost(PostComment postComment) {
+    public PostComment commentOnPost(PostComment postComment) {
         if (isLoggedIn) {
             Post postFromDb = postRepository.findById(postComment.getPost().getId()).orElseThrow(()->new ExistsException("Post Not Found"));
+            if (postComment.getMessage().isEmpty()) {
+                throw new InvalidInputException("Cannot Comment Empty Message");
+            }
             if (postComment.getMessage().length() > 1000) {
                 throw new InvalidInputException("Reached Maximum Characters");
             } else {
                 postComment.setCommentAuthor(user);
-                postCommentRepository.save(postComment);
+                return postCommentRepository.save(postComment);
             }
+        } else {
+            throw new NotLoggedInException("Please Login");
         }
     }
-    public void deletePostComment(PostComment postComment) {
+
+//    maybe change it back to parameter postComment postComment
+    public void deletePostComment(long postCommentId) {
         if (isLoggedIn) {
-            PostComment postCommentFromDb = postCommentRepository.findById(postComment.getId()).orElseThrow(()->new ExistsException("Post Not Found"));
+            PostComment postCommentFromDb = postCommentRepository.findById(postCommentId).orElseThrow(()->new ExistsException("Post Not Found"));
             if (postCommentFromDb.getCommentAuthor().getId() == user.getId()) {
-                postCommentRepository.deleteById(postComment.getId());
+                postCommentRepository.deleteById(postCommentId);
             } else {
                 throw new NotLoggedInException("Please Login");
             }
@@ -230,7 +239,7 @@ public class UserService {
             return null;
         }
     }
-    public List<User> getAllFollowings(User user) {
+    public List<User> getAllFollowings() {
         if (isLoggedIn) {
             return followingRepository.getAllFollowings(user.getId());
         } else {
@@ -284,11 +293,17 @@ public class UserService {
             throw new NotLoggedInException("Please Login");
         }
     }
-
-    public void editProfileBanner(long id, String content) {
-        UserProfileBio userProfileBioFromDb = userProfileBioRepository.findByUserId(id);
+// MAYBE CHANGE IT TO LOCAL FILE UPLOAD
+    public UserProfileBio editProfileBanner(long userId, String bannerUrl) {
+        UserProfileBio userProfileBioFromDb = userProfileBioRepository.findByUserId(userId);
         if (isLoggedIn) {
-
+            if (bannerUrl.isEmpty()) {
+                throw new InvalidInputException("No Url Entered");
+            }
+            userProfileBioFromDb.setBanner(bannerUrl);
+            return userProfileBioRepository.save(userProfileBioFromDb);
+        } else {
+            throw new NotLoggedInException("Please Login");
         }
     }
 

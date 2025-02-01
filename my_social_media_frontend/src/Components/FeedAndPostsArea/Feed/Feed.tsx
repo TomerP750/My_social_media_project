@@ -8,7 +8,6 @@ import {Filter} from "../Filter/Filter.tsx";
 import {Post} from "../../../Models/Post.ts";
 import feedService from "../../../Services/FeedService.ts";
 import {PostCard} from "../PostArea/PostCardArea/PostCard/PostCard.tsx";
-import {EditPost} from "../PostArea/EditPost/EditPost.tsx";
 
 export function Feed(): JSX.Element {
     
@@ -50,9 +49,17 @@ export function Feed(): JSX.Element {
             .catch(err => err.response.data)
     }
 
+    // function handlePostEdit(updatedPost: Post) {
+    //     setPosts(prevPosts =>
+    //         prevPosts.map(post => post.id === updatedPost.id ? updatedPost : post)
+    //     );
+    // }
+
     function handlePostEdit(updatedPost: Post) {
-        setPosts(prevPosts =>
-            prevPosts.map(post => post.id === updatedPost.id ? updatedPost : post)
+        setPosts((prevPosts) =>
+            prevPosts.map((post) =>
+                post.id === updatedPost.id ? { ...post, ...updatedPost } : post
+            )
         );
     }
 

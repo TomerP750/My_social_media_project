@@ -17,12 +17,19 @@ export function CommentsOnPost(props: PostProps): JSX.Element {
         feedService.getPostCommentsByPostId(props.post.id)
             .then(res => setPostComments(res))
             .catch(err => err.response.data)
-    }, [postComments]);
+    }, [props.post.id]);
 
     return (
         <div className="CommentsOnPost">
-            <AddComment post={props.post} setPostComments={setPostComments}/>
-            {postComments && postComments.map(comment => <PostCommentCard key={comment.id} postComment={comment}/>)}
+            <AddComment
+                post={props.post}
+                setPostComments={setPostComments}
+            />
+            {postComments && postComments.map(comment =>
+                <PostCommentCard
+                    key={comment.id}
+                    postComment={comment}
+                />)}
         </div>
     );
 

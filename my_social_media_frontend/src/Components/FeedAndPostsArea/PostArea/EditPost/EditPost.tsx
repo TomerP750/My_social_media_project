@@ -18,10 +18,19 @@ export function EditPost(props: EditPostProps): JSX.Element {
 
 
     function handleSaveEdit() {
-        userService.editPost(props.post.id, content)
-            .then(() => {
-                console.log(content)
-                const updatedPost = { ...props.post, content };
+        // userService.editPost(props.post.id, content)
+        //     .then((res) => {
+        //         const updatedPost = { ...props.post, content };
+        //         props.onSaveEdit(updatedPost);
+        //     })
+        //     .catch((error) => {
+        //         console.error("Failed to save post edit:", error);
+        //     });
+        // props.onCloseModal();
+        userService
+            .editPost(props.post.id, content)
+            .then((res) => {
+                const updatedPost = { ...props.post, content, isEdited: true };
                 props.onSaveEdit(updatedPost);
             })
             .catch((error) => {

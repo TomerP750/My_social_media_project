@@ -21,9 +21,10 @@ interface PostProps {
 
 export function PostCard(props: PostProps): JSX.Element {
 
-    let [numOfLikes, setNumOfLikes] = useState<number>(props.post.likeCount);
+    const [numOfLikes, setNumOfLikes] = useState<number>(props.post.likeCount);
     const [isLiked, setIsLiked] = useState<boolean>(false);
     const [openedComments, setOpenedComments] = useState<boolean>(false);
+    const [isEdited, setIsEdited] = useState<boolean>(props.post.isEdited);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -46,6 +47,12 @@ export function PostCard(props: PostProps): JSX.Element {
         setNumOfLikes(liked ? numOfLikes + 1 : numOfLikes - 1);
     }
 
+    function handlePostEdit(updatedPost: Post) {
+        props.onEdit(updatedPost);
+        setIsEdited(updatedPost.isEdited);
+
+    }
+
     return (
 
         <div className="postCard">
@@ -54,7 +61,7 @@ export function PostCard(props: PostProps): JSX.Element {
                     user={props.user}
                     post={props.post}
                     onDelete={props.onDelete}
-                    onEdit={props.onEdit}
+                    onEdit={handlePostEdit}
                 />
                 <PostCenter post={props.post}/>
                 <PostBottom
