@@ -335,5 +335,13 @@ public class UserService {
         return new ArrayList<>();
     }
 
+    public boolean isUserFollowed(long followerId, long followedId) {
+        if (isLoggedIn) {
+            return followingRepository.existsByFollowerIdAndFollowedId(followerId, followedId);
+        } else {
+            throw new NotLoggedInException("Not Logged In");
+        }
+    }
+
 
 }

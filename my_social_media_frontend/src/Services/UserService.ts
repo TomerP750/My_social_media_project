@@ -66,6 +66,10 @@ class UserService {
         return (await axios.get(`http://localhost:8080/user/post/checkifpostliked/${postId}`)).data;
     }
 
+    async isUserFollowed(followerId: number, followedId: number) {
+        return (await axios.get(`http://localhost:8080/user/isFollowing/${followerId}/${followedId}`)).data
+    }
+
 //     TEST SECTION FOR USERPROFILEDETAILS - REMOVE THIS IF I DONT WANT TO WORK WITH IT ANYMORE
 
     async getUserProfileDetailsByUserId(userId: number) {

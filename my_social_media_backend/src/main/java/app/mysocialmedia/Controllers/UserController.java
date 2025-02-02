@@ -63,6 +63,11 @@ public class UserController {
         return getInstance(token).getAllFollowings();
     }
 
+    @GetMapping("isFollowing/{followerId}/{followedId}")
+    public boolean isUserFollowed(@RequestHeader(value = "Authorization") String token ,@PathVariable long followerId,@PathVariable long followedId) throws SQLException {
+        return getInstance(token).isUserFollowed(followerId, followedId);
+    }
+
     // Posts
 
     @GetMapping("/post/getposts")

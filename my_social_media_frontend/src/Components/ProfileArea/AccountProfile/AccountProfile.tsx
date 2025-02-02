@@ -31,7 +31,9 @@ export function AccountProfile(): JSX.Element {
             </div>
             <div className="profilePageAvatar"></div>
 
-            {user && <UserProfileDetails user={user}/>}
+            {user && <UserProfileDetails
+                user={user}
+            />}
 
 
             <hr className={"userProfileHr"}/>
