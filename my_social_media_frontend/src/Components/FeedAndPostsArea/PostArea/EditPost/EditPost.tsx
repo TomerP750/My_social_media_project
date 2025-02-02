@@ -30,8 +30,11 @@ export function EditPost(props: EditPostProps): JSX.Element {
         userService
             .editPost(props.post.id, content)
             .then((res) => {
-                const updatedPost = { ...props.post, content, isEdited: true };
+                console.log("res: " ,res)
+                console.log("props.post: " , props.post)
+                const updatedPost = { ...props.post, content, edited: true };
                 props.onSaveEdit(updatedPost);
+
             })
             .catch((error) => {
                 console.error("Failed to save post edit:", error);

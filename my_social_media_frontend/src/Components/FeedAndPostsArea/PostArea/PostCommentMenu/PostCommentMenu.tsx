@@ -10,15 +10,15 @@ export function PostCommentMenu(props: PostCommentMenuProps): JSX.Element {
     function handleChangeSelect(val: string) {
 
         if(val === "delete") {
-            const deleteSure = window.confirm("Are you sure you want to delete?")
-            if (deleteSure) {
+            // const deleteSure = window.confirm("Are you sure you want to delete?")
+            // if (deleteSure) {
                 props.onDelete(props.postComment.id);
-            }
+            // }
 
         }
-        if (val === "edit") {
-
-        }
+        // if (val === "edit") {
+        //
+        // }
     }
 
     return (

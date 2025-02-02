@@ -8,6 +8,8 @@ import {AddComment} from "../AddComment/AddComment.tsx";
 
 interface PostProps {
     post: Post
+    postCommentCount: number
+    setPostCommentCount: React.Dispatch<React.SetStateAction<number>>;
 }
 export function CommentsOnPost(props: PostProps): JSX.Element {
 
@@ -24,9 +26,15 @@ export function CommentsOnPost(props: PostProps): JSX.Element {
             <AddComment
                 post={props.post}
                 setPostComments={setPostComments}
+                postCommentCount={props.postCommentCount}
+                setPostCommentCount={props.setPostCommentCount}
             />
             {postComments && postComments.map(comment =>
                 <PostCommentCard
+                    postCommentCount={props.postCommentCount}
+                    setPostCommentCount={props.setPostCommentCount}
+                    setPostComments={setPostComments}
+                    postComments={postComments}
                     key={comment.id}
                     postComment={comment}
                 />)}

@@ -13,6 +13,10 @@ import {PostCommentMenu} from "../PostCommentMenu/PostCommentMenu.tsx";
 
 interface PostCommentCardProps {
     postComment: PostComment
+    postCommentCount: number
+    postComments: PostComment[]
+    setPostCommentCount: React.Dispatch<React.SetStateAction<number>>;
+    setPostComments: React.Dispatch<React.SetStateAction<PostComment[]>>;
 }
 export function PostCommentCard(props: PostCommentCardProps): JSX.Element {
 
@@ -53,7 +57,11 @@ export function PostCommentCard(props: PostCommentCardProps): JSX.Element {
         const answer = window.confirm("are you sure you want to delete the comment?")
         if (answer) {
             userService.deleteComment(props.postComment.id)
-                .then(res => alert("comment deleted"))
+                .then(res => {
+                    props.setPostCommentCount(props.postCommentCount - 1)
+                    props.setPostComments(props.postComments.filter((postComment) => postComment.id !== props.postComment.id))
+                    alert("comment deleted")
+                })
                 .catch(err => err.response.data)
             setOpenedMoreVert(false);
         }

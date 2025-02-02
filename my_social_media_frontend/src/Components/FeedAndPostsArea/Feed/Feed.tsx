@@ -18,7 +18,10 @@ export function Feed(): JSX.Element {
 
     useEffect(() => {
         feedService.getAllPosts()
-            .then(res=>setPosts(res))
+            .then(res=>{
+                console.log("posts: ", res)
+                setPosts(res)
+            })
             .catch(err=>err.response.data)
     }, []);
 
@@ -56,9 +59,10 @@ export function Feed(): JSX.Element {
     // }
 
     function handlePostEdit(updatedPost: Post) {
+        console.log("updated post: ",updatedPost)
         setPosts((prevPosts) =>
             prevPosts.map((post) =>
-                post.id === updatedPost.id ? { ...post, ...updatedPost } : post
+                post.id === updatedPost.id ? updatedPost : post
             )
         );
     }
@@ -74,6 +78,7 @@ export function Feed(): JSX.Element {
             <div className="Posts">
                 {sortedPosts ? sortedPosts.map(post =>
                     <PostCard
+                        setPosts={setPosts}
                     user={post.author}
                     onDelete={handlePostDeletion}
                     onEdit={handlePostEdit}

@@ -12,6 +12,9 @@ import TagOutlinedIcon from '@mui/icons-material/TagOutlined';
 interface AddCommentProps {
     post: Post
     setPostComments: React.Dispatch<React.SetStateAction<any>>;
+    postCommentCount: number
+    setPostCommentCount: React.Dispatch<React.SetStateAction<number>>;
+
 }
 export function AddComment(props: AddCommentProps): JSX.Element {
 
@@ -53,6 +56,7 @@ export function AddComment(props: AddCommentProps): JSX.Element {
                         addedComment
                     ]);
                     setContent('');
+                    props.setPostCommentCount(props.postCommentCount + 1)
                 })
                 .catch((err) => {
                     console.log("Error adding comment:", err);

@@ -10,12 +10,14 @@ import {getTokenState} from "../../../../../Util.ts";
 import {useNavigate} from "react-router-dom";
 import {User} from "../../../../../Models/User.ts";
 import userService from "../../../../../Services/UserService.ts";
+import feedService from "../../../../../Services/FeedService.ts";
 
 interface PostProps {
     user: User
     post: Post
     onDelete: (postId: number) => void;
     onEdit: (updatedPost: Post) => void;
+    setPosts: React.Dispatch<React.SetStateAction<Post[]>>;
 
 }
 
@@ -24,14 +26,21 @@ export function PostCard(props: PostProps): JSX.Element {
     const [numOfLikes, setNumOfLikes] = useState<number>(props.post.likeCount);
     const [isLiked, setIsLiked] = useState<boolean>(false);
     const [openedComments, setOpenedComments] = useState<boolean>(false);
-    const [isEdited, setIsEdited] = useState<boolean>(props.post.isEdited);
     const navigate = useNavigate();
+    const [postCommentCount, setPostCommentCount] = useState<number>(0);
+
 
     useEffect(() => {
         userService.checkIfPostLiked(props.post.id)
             .then(res => setIsLiked(res))
             .catch(err => err.response.data)
     }, [props.post.id]);
+
+    useEffect(() => {
+        feedService.getCommentCountByPostId(props.post.id)
+            .then(res=>setPostCommentCount(res))
+            .catch(err=>err.message.data)
+    }, []);
 
     function handleOpenComments() {
         if (getTokenState()) {
@@ -49,7 +58,7 @@ export function PostCard(props: PostProps): JSX.Element {
 
     function handlePostEdit(updatedPost: Post) {
         props.onEdit(updatedPost);
-        setIsEdited(updatedPost.isEdited);
+        // setIsEdited(updatedPost.isEdited);
 
     }
 
@@ -58,6 +67,7 @@ export function PostCard(props: PostProps): JSX.Element {
         <div className="postCard">
             <div className="postCardWrapper">
                 <PostTop
+                    setPosts={props.setPosts}
                     user={props.user}
                     post={props.post}
                     onDelete={props.onDelete}
@@ -65,6 +75,8 @@ export function PostCard(props: PostProps): JSX.Element {
                 />
                 <PostCenter post={props.post}/>
                 <PostBottom
+                    postCommentCount={postCommentCount}
+                    setPostCommentCount={setPostCommentCount}
                     isLiked={isLiked}
                     numOfLikes={numOfLikes}
                     post={props.post}
@@ -80,7 +92,11 @@ export function PostCard(props: PostProps): JSX.Element {
                 {openedComments &&
                     <div className="commentSection">
                         {/*<AddComment post={props.post}/>*/}
-                    <CommentsOnPost post={props.post}/>
+                    <CommentsOnPost
+                        setPostCommentCount={setPostCommentCount}
+                        postCommentCount={postCommentCount}
+                        post={props.post}
+                    />
                     </div>}
             </div>
         </div>

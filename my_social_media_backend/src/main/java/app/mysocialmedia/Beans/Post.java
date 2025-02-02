@@ -85,7 +85,7 @@ public class Post {
         return isEdited;
     }
 
-    public void setEdited(boolean edited) {
+    public void setIsEdited(boolean edited) {
         isEdited = edited;
     }
 
@@ -97,6 +97,7 @@ public class Post {
                 ", author=" + author +
                 ", content='" + content + '\'' +
                 ", likeCount=" + likeCount +
+                ", isEdited=" + isEdited +
                 '}';
     }
 }

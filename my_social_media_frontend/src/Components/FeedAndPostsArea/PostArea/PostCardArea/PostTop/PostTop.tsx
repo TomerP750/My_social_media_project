@@ -14,6 +14,7 @@ import {EditPost} from "../../EditPost/EditPost.tsx";
 interface PostTopProps {
     user: User
     post: Post
+    setPosts: React.Dispatch<React.SetStateAction<Post[]>>;
     onDelete: (postId: number) => void;
     onEdit: (updatedPost: Post) => void;
 }
@@ -42,6 +43,7 @@ export function PostTop(props: PostTopProps): JSX.Element {
             setOpenedMoreVert(false);
         }
         if (val === "edit") {
+
             setIsModalOpen(true)
             setOpenedMoreVert(false);
         }
@@ -88,7 +90,7 @@ export function PostTop(props: PostTopProps): JSX.Element {
                     {props.post.author.firstName} {props.post.author.lastName}
                 </span>
                 <span className={"postTime"}>{timeAgoText}</span>
-                {props.post.isEdited && <span className="edited-tag">(edited)</span>}
+                {props.post.edited && <span className="edited-tag"> (edited)</span>}
             </div>
 
             <div className="postTopRight">

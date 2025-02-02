@@ -125,8 +125,9 @@ public class UserService {
                 throw new NotLoggedInException("Please Login");
             }
             postFromDB.setContent(content);
-            postFromDB.setEdited(true);
-            postRepository.save(postFromDB);
+            postFromDB.setIsEdited(true);
+            postRepository.saveAndFlush(postFromDB);
+            System.out.println(postFromDB);
             return true;
         } else {
             throw new NotLoggedInException("Please Login");
