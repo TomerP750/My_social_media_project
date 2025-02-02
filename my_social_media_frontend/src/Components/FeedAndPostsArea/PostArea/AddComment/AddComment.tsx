@@ -55,7 +55,7 @@ export function AddComment(props: AddCommentProps): JSX.Element {
                     setContent('');
                 })
                 .catch((err) => {
-                    console.log("Error adding comment:", err); // Log the error if any
+                    console.log("Error adding comment:", err);
                 });
 
         }

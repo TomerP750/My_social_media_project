@@ -1,0 +1,208 @@
+
+/*!*.searchBar {*!*/
+/*!*    width: 50%;*!*/
+/*!*    height: 30px;*!*/
+/*!*    background-color: #0b56d6;*!*/
+/*!*    display: flex;*!*/
+/*!*    align-items: center;*!*/
+/*!*    border: 2px solid white;*!*/
+/*!*    border-radius: 15px;*!*/
+/*!*}*!*/
+
+/*!*.searchIcon {*!*/
+/*!*    font-size: 20px; !important;*!*/
+/*!*    margin-left: 10px;*!*/
+/*!*    color: white !important;*!*/
+/*!*    margin-right: 5px;*!*/
+/*!*}*!*/
+
+/*!*.searchInput {*!*/
+/*!*    font-family: Outfit;*!*/
+/*!*    color: white;*!*/
+/*!*    background-color: #0b56d6;*!*/
+/*!*    border: none;*!*/
+/*!*    width: 70%;*!*/
+/*!*}*!*/
+
+/*!*.searchInput::placeholder {*!*/
+/*!*    opacity: 0.8;*!*/
+/*!*    color: white;*!*/
+/*!*    font-family: Outfit;*!*/
+/*!*}*!*/
+
+/*!*.searchInput:focus {*!*/
+/*!*    outline: none;*!*/
+/*!*}*!*/
+
+
+/*.searchBar {*/
+/*    width: 50%;*/
+/*    height: 40px;*/
+/*    background-color: #0b56d6;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    border: 2px solid white;*/
+/*    border-radius: 15px;*/
+/*    position: relative; !* Added to position dropdown relative to the search bar *!*/
+/*}*/
+
+/*.searchIcon {*/
+/*    font-size: 20px !important;*/
+/*    margin-left: 10px;*/
+/*    color: white !important;*/
+/*    margin-right: 5px;*/
+/*}*/
+
+/*.searchInput {*/
+/*    font-family: Outfit;*/
+/*    color: white;*/
+/*    background-color: #0b56d6;*/
+/*    border: none;*/
+/*    width: 100%;*/
+/*    padding: 5px 10px;*/
+/*}*/
+
+/*.searchInput::placeholder {*/
+/*    opacity: 0.8;*/
+/*    color: white;*/
+/*    font-family: Outfit;*/
+/*}*/
+
+/*.searchInput:focus {*/
+/*    outline: none;*/
+/*}*/
+
+/*.searchResults {*/
+/*    position: absolute;*/
+/*    top: 100%; !* Position the dropdown directly below the search bar *!*/
+/*    left: 0;*/
+/*    width: 100%;*/
+/*    background-color: #fff;*/
+/*    border: 1px solid #ddd;*/
+/*    border-radius: 10px;*/
+/*    max-height: 200px;*/
+/*    overflow-y: auto;*/
+/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);*/
+/*    z-index: 10;*/
+/*}*/
+
+/*.searchResults ul {*/
+/*    list-style-type: none;*/
+/*    padding: 0;*/
+/*    margin: 0;*/
+/*}*/
+
+/*.searchResults li {*/
+/*    padding: 10px;*/
+/*    cursor: pointer;*/
+/*    transition: background-color 0.2s;*/
+/*}*/
+
+/*.searchResults li:hover {*/
+/*    background-color: #f0f0f0;*/
+/*}*/
+
+/*.searchResults li:last-child {*/
+/*    border-bottom: none;*/
+/*}*/
+
+/*.noResults {*/
+/*    color: white;*/
+/*}*/
+
+/*.clearIcon {*/
+/*    font-size: 20px;*/
+/*    color: white;*/
+/*    cursor: pointer;*/
+/*    margin-left: 10px;*/
+/*}*/
+
+.searchBar {
+    width: 50%;
+    height: 30px;
+    background-color: #0b56d6;
+    display: flex;
+    align-items: center;
+    border: 2px solid white;
+    border-radius: 15px;
+    position: relative;
+}
+
+.searchIcon {
+    font-size: 20px;
+    margin-left: 10px;
+    color: white;
+    margin-right: 5px;
+}
+
+.searchInput {
+    font-family: Outfit;
+    color: white;
+    background-color: #0b56d6;
+    border: none;
+    width: 70%;
+}
+
+.searchInput::placeholder {
+    opacity: 0.8;
+    color: white;
+    font-family: Outfit;
+}
+
+.searchInput:focus {
+    outline: none;
+}
+
+.clearIcon {
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    margin-left: 2rem;
+}
+
+.searchResults {
+    position: absolute;
+    top: 40px; /* Adjust to make it appear just below the input */
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 10;
+}
+
+.searchResults ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.searchResults li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.searchResults li:hover {
+    background-color: #f5f5f5;
+}
+
+.noResults {
+    position: absolute;
+    top: 40px; /* Adjust to make it appear just below the input */
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    color: #777;
+    z-index: 10;
+}
+
+
+
+
+

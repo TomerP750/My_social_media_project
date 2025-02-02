@@ -64,41 +64,6 @@
     justify-content: center;
 }
 
-.searchBar {
-    width: 50%;
-    height: 30px;
-    background-color: #0b56d6;
-    display: flex;
-    align-items: center;
-    border: 2px solid white;
-    border-radius: 15px;
-}
-
-.searchIcon {
-    font-size: 20px; !important;
-    margin-left: 10px;
-    color: white !important;
-    margin-right: 5px;
-}
-
-.searchInput {
-    font-family: Outfit;
-    color: white;
-    background-color: #0b56d6;
-    border: none;
-    width: 70%;
-}
-
-.searchInput::placeholder {
-    opacity: 0.8;
-    color: white;
-    font-family: Outfit;
-}
-
-.searchInput:focus {
-    outline: none;
-}
-
 .navbarRight{
     flex: 4;
     display: flex;

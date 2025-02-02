@@ -125,5 +125,10 @@ public class UserController {
 
 //    TEST AREA
 
+    @GetMapping("search/{query}")
+    public List<User> searchUsers(@RequestHeader(value = "Authorization") String token, @PathVariable String query) throws SQLException {
+        return getInstance(token).searchUsers(query);
+    }
+
 
 }

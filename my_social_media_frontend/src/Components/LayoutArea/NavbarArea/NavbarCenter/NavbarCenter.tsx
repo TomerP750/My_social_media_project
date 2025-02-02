@@ -6,11 +6,15 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import {getTokenState} from "../../../../Util.ts";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
+import {User} from "../../../../Models/User.ts";
+import userService from "../../../../Services/UserService.ts";
+import {SearchBar} from "../SearchBar/SearchBar.tsx";
 
 export function NavbarCenter(): JSX.Element {
 
     const navigate = useNavigate();
     const [notificationCounter, setNotificationCounter] = useState<number>(0);
+
 
     function handleNotificationClick() {
         if (!getTokenState()) {
@@ -24,20 +28,11 @@ export function NavbarCenter(): JSX.Element {
         }
     }
 
-    function handleaccountClick() {
-        if (!getTokenState()) {
-            navigate("/login");
-        } else {
-            navigate("/account")
-        }
-    }
+
 
     return (
         <div className="navbarCenter">
-            <div className="searchBar">
-                <Search className={"searchIcon"}/>
-                <input placeholder={"Search for friend, post or video"} className={"searchInput"}/>
-            </div>
+            <SearchBar/>
             <div className="navbarItems">
                 {/*{authStore.getState().token &&*/}
             <div className="navbarItem">

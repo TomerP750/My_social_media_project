@@ -18,7 +18,7 @@ export function Login(): JSX.Element {
                 authStore.dispatch(login(res))
                 navigate("/")
             })
-            .catch(err=>err.response.data)
+            .catch(err=>alert(err.response.data))
     }
 
     return (

@@ -80,7 +80,9 @@ class UserService {
         return (await axios.put(`http://localhost:8080/user/bio/${userId}/${bannerUrl}`)).data
     }
 
-
+    async searchUsers(query: string) {
+        return (await axios.get(`http://localhost:8080/user/search/${query}`)).data
+    }
 
 //     TEST FIELD BOTTOM
 

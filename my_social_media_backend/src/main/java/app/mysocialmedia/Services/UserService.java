@@ -322,5 +322,9 @@ public class UserService {
 
 //    TEST AREA
 
+    public List<User> searchUsers(String query) {
+        return userRepository.findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(query, query);
+    }
+
 
 }
