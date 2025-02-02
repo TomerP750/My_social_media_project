@@ -33,15 +33,17 @@ export function SearchBar(): JSX.Element {
 
     useEffect(() => {
         const debounceTimer = setTimeout(() => {
-            if (query.trim() !== "") {
-                searchUsers(query);
+            const trimmedQuery = query.trim();
+            if (trimmedQuery) {
+                searchUsers(trimmedQuery);
             } else {
                 setSearchResult([]);
             }
         }, 500);
 
         return () => clearTimeout(debounceTimer);
-    }, [query]); // Only re-run the effect when query changes
+    }, [query]);
+
 
     return (
         <div className="searchBar">
@@ -50,13 +52,13 @@ export function SearchBar(): JSX.Element {
                 placeholder={"Search for friend, post or video"}
                 className={"searchInput"}
                 value={query}
-                onChange={(e) => setQuery(e.target.value)} // Update query state on input change
+                onChange={(e) => setQuery(e.target.value)}
             />
 
             {query && (
                 <Clear
                     className="clearIcon"
-                    onClick={() => setQuery('')} // Clear the query when X is clicked
+                    onClick={() => setQuery('')}
                 />
             )}
 

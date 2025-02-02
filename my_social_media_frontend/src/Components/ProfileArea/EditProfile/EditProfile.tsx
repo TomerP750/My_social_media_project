@@ -25,25 +25,23 @@ export function EditProfile(props: EditProfileProps): JSX.Element {
             .then((user) => {
                 setValue("firstName", user.firstName);
                 setValue("lastName", user.lastName);
+                setValue("email", user.email);
                 setValue("image", user.image);
             })
             .catch((error) => console.error("Error fetching user data:", error));
     }, [userName, setValue]);
 
     function sendUser(user: User) {
-        user.userName = userName;
-        userService
-            .updateUser(user)
-            .then(() => {
-                navigate(`/user/${user.userName}`);
-            })
-            .catch(err => err.response.data);
+        if (user) {
+            user.userName = userName;
+            console.log("user: ", user);
+            userService.updateUser(user)
+                .then(() => {
+                    navigate(`/user/${user.userName}`);
+                })
+                .catch(err => alert(err.response.data));
+        }
     }
-
-    // const closeModal = () => {
-    //     setIsModalOpen(false);
-    //     navigate(`/user/${userName}`);
-    // };
 
     return (
         <>

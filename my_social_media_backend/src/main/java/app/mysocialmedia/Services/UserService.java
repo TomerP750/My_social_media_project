@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -323,7 +324,14 @@ public class UserService {
 //    TEST AREA
 
     public List<User> searchUsers(String query) {
-        return userRepository.findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(query, query);
+//        return userRepository.findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(query, query);
+        String[] terms = query.split(" ");
+        if (terms.length == 1) {
+            return userRepository.findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(query, query);
+        } else if (terms.length == 2) {
+            return userRepository.findByFirstNameContainingIgnoreCaseAndLastNameContainingIgnoreCase(terms[0], terms[1]);
+        }
+        return new ArrayList<>();
     }
 
 

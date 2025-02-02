@@ -1,19 +1,14 @@
 import "./NavbarCenter.css";
-import {Notifications, Search} from "@mui/icons-material";
+import {Notifications} from "@mui/icons-material";
 import MessageIcon from "@mui/icons-material/Message";
-import {authStore} from "../../../../Redux/AuthSlice.ts";
-import AccountCircle from "@mui/icons-material/AccountCircle";
 import {getTokenState} from "../../../../Util.ts";
 import {useNavigate} from "react-router-dom";
-import {useState} from "react";
-import {User} from "../../../../Models/User.ts";
-import userService from "../../../../Services/UserService.ts";
 import {SearchBar} from "../SearchBar/SearchBar.tsx";
 
 export function NavbarCenter(): JSX.Element {
 
     const navigate = useNavigate();
-    const [notificationCounter, setNotificationCounter] = useState<number>(0);
+    // const [notificationCounter, setNotificationCounter] = useState<number>(0);
 
 
     function handleNotificationClick() {
@@ -34,14 +29,17 @@ export function NavbarCenter(): JSX.Element {
         <div className="navbarCenter">
             <SearchBar/>
             <div className="navbarItems">
-                {/*{authStore.getState().token &&*/}
             <div className="navbarItem">
-                <Notifications className={"navbarItemLogo"} onClick={handleNotificationClick}/>
+                <Notifications
+                    className={"navbarItemLogo"}
+                    onClick={handleNotificationClick}
+                />
                 <span className={"navbarItemText"}>Notifications</span>
             </div>
-                {/*{authStore.getState().token &&*/}
             <div className="navbarItem" onClick={handleMessagesClick}>
-                <MessageIcon className={"navbarItemLogo"}/>
+                <MessageIcon
+                    className={"navbarItemLogo"}
+                />
                 <span className={"navbarItemText"}>Messages</span>
             </div>
             </div>
