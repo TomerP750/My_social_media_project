@@ -31,13 +31,15 @@ export function UserProfileDetails(props: UserProfileDetailsProps): JSX.Element 
     }
 
     useEffect(() => {
+        if (props.user.id) {
         feedService.getProfileFollowers(props.user.id)
             .then(res => setFollowersLength(res.length))
             .catch(err => alert(err.response.data))
         feedService.getProfileFollowings(props.user.id)
             .then(res => setFollowingsLength(res.length))
             .catch(err => alert(err.response.data))
-    }, [followed]);
+            }
+    }, [followed, props.user.userName]);
 
 
     useEffect(() => {
@@ -80,7 +82,8 @@ export function UserProfileDetails(props: UserProfileDetailsProps): JSX.Element 
             {modalOpened && modalType === "followers" && (
                 <FollowersModal
                     user={props.user}
-                    onClose={() => setModalOpened(false)}/>
+                    onClose={() => setModalOpened(false)}
+                />
             )}
             {modalOpened && modalType === "followings" && (
                 <FollowingsModal

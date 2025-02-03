@@ -27,6 +27,7 @@ export function FollowersModal(props: FollowersModalProps): JSX.Element {
                 <h1>Followers</h1>
                 <hr className="followersModalHr"/>
                 {followers ? followers.map(follower => <FollowersSpan
+                    onCloseModal={props.onClose}
                     user={follower}
                     key={follower.id}/>) : <span>Loading...</span>}
             </div>

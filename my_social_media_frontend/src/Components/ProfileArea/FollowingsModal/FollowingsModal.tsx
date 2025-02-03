@@ -26,7 +26,10 @@ export function FollowingsModal(props: FollowingsModalProps): JSX.Element {
                 <h1>Following</h1>
                 <hr className="followingsModalHr"/>
                 {followings ? followings.map(following => (
-                    <FollowingsSpan user={following} key={following.id}/>
+                    <FollowingsSpan
+                        user={following} key={following.id}
+                        onCloseModal={props.onClose}
+                    />
                 )) : <span>Loading...</span>}
             </div>
         </div>
