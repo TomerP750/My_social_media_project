@@ -74,3 +74,9 @@
 .profileBoxBottom {
 
 }
+
+@media (max-width: 1172px) {
+	.LayoutRightSection {
+		display: none;
+	}
+}

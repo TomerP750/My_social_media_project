@@ -5,7 +5,10 @@ import app.mysocialmedia.Exceptions.ExistsException;
 import app.mysocialmedia.Exceptions.InvalidInputException;
 import app.mysocialmedia.Exceptions.NotLoggedInException;
 import app.mysocialmedia.Repositories.*;
-import app.mysocialmedia.UserProfileFeature.UserProfileBioRepository;
+import app.mysocialmedia.UserProfileFeature.AboutBio;
+import app.mysocialmedia.UserProfileFeature.AboutRepository;
+import app.mysocialmedia.UserProfileFeature.BannerRepository;
+import app.mysocialmedia.UserProfileFeature.ProfileBanner;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -24,16 +27,18 @@ public class UserService {
     private PostRepository postRepository;
     private PostLikesRepository postLikesRepository;
 
-    private UserProfileBioRepository userProfileBioRepository;
+    private AboutRepository aboutRepository;
+    private BannerRepository bannerRepository;
 
 
-    public UserService(FollowingRepository followingRepository, UserRepository userRepository, PostRepository postRepository, PostLikesRepository postLikesRepository, PostCommentRepository postCommentRepository, UserProfileBioRepository userProfileBioRepository) {
+    public UserService(FollowingRepository followingRepository, UserRepository userRepository, PostRepository postRepository, PostLikesRepository postLikesRepository, PostCommentRepository postCommentRepository, AboutRepository aboutRepository, BannerRepository bannerRepository ) {
         this.followingRepository = followingRepository;
         this.userRepository = userRepository;
         this.postRepository = postRepository;
         this.postLikesRepository = postLikesRepository;
         this.postCommentRepository = postCommentRepository;
-        this.userProfileBioRepository = userProfileBioRepository;
+        this.aboutRepository = aboutRepository;
+        this.bannerRepository = bannerRepository;
     }
     public void login(String email, String password) {
         if (userRepository.existsByEmailAndPassword(email, password)) {
@@ -276,56 +281,45 @@ public class UserService {
 
 //    TEST AREA FOR PROFILE BIO SECTION REMOVE IF I DONT NEED ANYMORE
 
-    public UserProfileBio editProfileAboutBio(long id, String content) {
-        UserProfileBio userProfileBioFromDb = userProfileBioRepository.findByUserId(id);
+    public void editAboutBio(AboutBio about) {
         if (isLoggedIn) {
-            if(userProfileBioFromDb.getAbout().length() > 1000) {
-                throw new InvalidInputException("Reached Maximum Characters");
+            if (!aboutRepository.existsByUserId(user.getId())) {
+                AboutBio aboutBio = new AboutBio();
+                aboutBio.setContent(about.getContent());
+                aboutBio.setUser(user);
+                aboutRepository.save(aboutBio);
             }
-            if (userProfileBioFromDb.getAbout().isEmpty()) {
-                throw new InvalidInputException("No Content Entered");
+            else {
+                AboutBio aboutFromDb = aboutRepository.findByUserId(user.getId());
+                aboutFromDb.setContent(about.getContent());
+                aboutRepository.save(aboutFromDb);
             }
-            if (userProfileBioFromDb.getUser().getId() != user.getId()) {
-                throw new NotLoggedInException("Please Login");
-            }
-
-            userProfileBioFromDb.setAbout(content);
-            return userProfileBioRepository.save(userProfileBioFromDb);
         } else {
-            throw new NotLoggedInException("Please Login");
-        }
-    }
-// MAYBE CHANGE IT TO LOCAL FILE UPLOAD
-    public UserProfileBio editProfileBanner(long userId, String bannerUrl) {
-        UserProfileBio userProfileBioFromDb = userProfileBioRepository.findByUserId(userId);
-        if (isLoggedIn) {
-            if (bannerUrl.isEmpty()) {
-                throw new InvalidInputException("No Url Entered");
-            }
-            userProfileBioFromDb.setBanner(bannerUrl);
-            return userProfileBioRepository.save(userProfileBioFromDb);
-        } else {
-            throw new NotLoggedInException("Please Login");
+            throw new NotLoggedInException("Not Logged In");
         }
     }
 
-    /**
-     * Gets the object that has the about and the banner strings so i can get them and implement them in the profile
-     * @param userId
-     * @return
-     */
-    public UserProfileBio getUserProfileBio(long userId) {
-        if (userProfileBioRepository.existsByUserId(userId)) {
-            return userProfileBioRepository.findByUserId(userId);
+    public AboutBio getAboutBio(long userId) {
+        if (isLoggedIn) {
+            if (aboutRepository.existsByUserId(userId)) {
+                return aboutRepository.findByUserId(userId);
+            }
         } else {
-            throw new ExistsException("User not found");
+            throw new NotLoggedInException("Not Logged In");
+        }
+        return null;
+    }
+    public void editeBanner(ProfileBanner banner) {
+        if (isLoggedIn) {
+            if (!banner.getUrl().isEmpty()) {
+                bannerRepository.save(banner);
+            }
         }
     }
 
 //    TEST AREA
 
     public List<User> searchUsers(String query) {
-//        return userRepository.findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(query, query);
         String[] terms = query.split(" ");
         if (terms.length == 1) {
             return userRepository.findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(query, query);

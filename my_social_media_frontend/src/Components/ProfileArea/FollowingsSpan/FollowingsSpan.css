@@ -1,20 +1,57 @@
+/* Styling for individual followings */
 .FollowingsSpan {
-	
-}
-
-.followingUser {
-    margin-bottom: 1rem;
-}
-
-.followingModalLastName {
-    margin-left: 0.5rem;
-}
-
-.fullName {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    width: 100%; /* Ensure the span takes up the full width */
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.3s ease;
     cursor: pointer;
-    font-size: 22px;
 }
 
+.FollowingsSpan:hover {
+    background-color: #f9f9f9;
+}
+
+/* Profile picture and full name container */
+.followingUser {
+    display: flex;
+    align-items: center;
+    width: 100%; /* Make sure everything is properly aligned */
+}
+
+/* Profile picture styling */
+.followingUser img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 15px; /* Space between the profile picture and the name */
+}
+
+/* Full name container styling */
+.fullName {
+    display: flex; /* Display names side by side */
+    flex-direction: row; /* Align first and last name in a row */
+    align-items: center; /* Vertically center align the names */
+}
+
+/* First name styling */
+.followingModalFirstName {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-right: 5px; /* Add some space between first and last name */
+}
+
+/* Last name styling */
+.followingModalLastName {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Styling for the name container hover effect */
 .fullName:hover {
     text-decoration: underline;
+    color: #007bff;
 }

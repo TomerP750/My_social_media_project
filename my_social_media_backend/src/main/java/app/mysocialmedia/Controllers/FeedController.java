@@ -41,4 +41,14 @@ public class FeedController {
     }
 
 
+    @GetMapping("followers/{id}")
+    public List<User> showFollowers(@PathVariable long id) throws SQLException {
+        return feedService.getAllFollowers(id);
+    }
+
+    @GetMapping("followings/{id}")
+    public List<User> showAllFollowings(@PathVariable long id) throws SQLException {
+        return feedService.getAllFollowing(id);
+    }
+
 }

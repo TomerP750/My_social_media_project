@@ -18,6 +18,16 @@ class FeedService {
     async getPostCommentsByPostId(postId: number) {
         return (await axios.get(`http://localhost:8080/feed/postcomments/${postId}`)).data
     }
+
+    async getProfileFollowers(id: number) {
+        return (await axios.get(`http://localhost:8080/feed/followers/${id}`)).data
+    }
+
+    async getProfileFollowings(id: number) {
+        return (await axios.get(`http://localhost:8080/feed/followings/${id}`)).data
+    }
+
+
 }
 
 

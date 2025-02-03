@@ -2,6 +2,7 @@ import axios from "axios";
 import {Post} from "../Models/Post.ts";
 import {User} from "../Models/User.ts";
 import {PostComment} from "../Models/PostComment.ts";
+import {AboutBio} from "../Models/AboutBio.ts";
 
 
 class UserService {
@@ -12,15 +13,6 @@ class UserService {
     async getProfileByUserName(userName: string) {
         return (await axios.get(`http://localhost:8080/user/profileByUserName/${userName}`)).data;
     }
-
-    async getFollowersCount(userName: string) {
-        return (await axios.get(`http://localhost:8080/user/followersCount/${userName}`)).data
-    }
-
-    async getFollowingsCount(userName: string) {
-        return (await axios.get(`http://localhost:8080/user/followingsCount/${userName}`)).data
-    }
-
     async updateUser(user: User) {
         return (await axios.put("http://localhost:8080/user/updateuser", user));
     }
@@ -76,12 +68,12 @@ class UserService {
         return (await axios.get(`http://localhost:8080/user/bio/${userId}`)).data
     }
 
-    async editUserProfileAboutBio(userId: number, content: string) {
-        return (await axios.put(`http://localhost:8080/user/bio/${userId}/${content}`)).data
+    async editAboutBio(about: AboutBio) {
+        return (await axios.put(`http://localhost:8080/user/editAboutBio`, about))
     }
 
-    async editBannerBio(userId: number, bannerUrl: string) {
-        return (await axios.put(`http://localhost:8080/user/bio/${userId}/${bannerUrl}`)).data
+    async getAboutByUserId(userId: number) {
+        return (await axios.get(`http://localhost:8080/user/getAbout/${userId}`)).data
     }
 
     async searchUsers(query: string) {

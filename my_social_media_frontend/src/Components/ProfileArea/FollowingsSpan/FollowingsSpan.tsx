@@ -10,16 +10,16 @@ export function FollowingsSpan(props: FollowingsSpanProps): JSX.Element {
 
     const navigate = useNavigate();
 
-
     return (
         <div className="FollowingsSpan">
             <div className="followingUser">
-            <img src="#" alt=""/>
-                <div className="fullName" onClick={()=>navigate(`/user/${props.user.userName}`)}>
-            <span className={"followingModalFirstName"}>{props.user.firstName}</span>
-            <span className={"followingModalLastName"}>{props.user.lastName}</span>
+                <img src="#" alt="Profile" />
+                <div className="fullName" onClick={() => navigate(`/user/${props.user.userName}`)}>
+                    <span className="followingModalFirstName">{props.user.firstName}</span>
+                    <span className="followingModalLastName">{props.user.lastName}</span>
                 </div>
             </div>
         </div>
     );
+
 }

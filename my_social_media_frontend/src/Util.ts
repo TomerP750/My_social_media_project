@@ -1,6 +1,7 @@
 import {User} from "./Models/User.ts";
 import {authStore} from "./Redux/AuthSlice.ts";
 import defaultProfilePic from "../src/assets/defaultProfilepic.png"
+import feedService from "./Services/FeedService.ts";
 
 export function timeAgo(date: Date) {
     const now = new Date();
@@ -48,3 +49,6 @@ export function getTokenState(): boolean {
     }
     return false;
 }
+
+
+

@@ -11,6 +11,7 @@ import {authStore} from "../../../Redux/AuthSlice.ts";
 export function AccountProfile(): JSX.Element {
 
     const [user, setUser] = useState<User>();
+    const [loggedInUser, setLoggedInUser] = useState<User>();
     const params = useParams();
     const userName = params.userName!;
 
@@ -20,6 +21,12 @@ export function AccountProfile(): JSX.Element {
                 setUser(res)
             })
             .catch(err => err.response.data)
+    }, [userName]);
+
+    useEffect(() => {
+        userService.getAccountDetails()
+            .then(res => setLoggedInUser(res))
+            .catch(err => alert(err.response.data))
     }, []);
 
     return (
@@ -32,6 +39,7 @@ export function AccountProfile(): JSX.Element {
             <div className="profilePageAvatar"></div>
 
             {user && <UserProfileDetails
+                loggedInUser={loggedInUser}
                 user={user}
             />}
 
@@ -39,9 +47,7 @@ export function AccountProfile(): JSX.Element {
             <hr className={"userProfileHr"}/>
 
         </div>
-            {/*TEST AREA*/}
             {user && <About user={user}/>}
-            {/*TEST AREA*/}
             </>
     );
 }

@@ -25,6 +25,16 @@ public class FeedService {
         return postRepository.findAll();
     }
 
+    public List<User> getAllFollowers(long id) {
+        return followingRepository.getAllFollowers(id);
+    }
+
+    public List<User> getAllFollowing(long id) {
+        return followingRepository.getAllFollowings(id);
+    }
+
+
+
 
 
 

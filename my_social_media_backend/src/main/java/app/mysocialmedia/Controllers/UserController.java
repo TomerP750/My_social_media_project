@@ -3,6 +3,8 @@ package app.mysocialmedia.Controllers;
 import app.mysocialmedia.Beans.*;
 import app.mysocialmedia.Security.SessionManager;
 import app.mysocialmedia.Services.UserService;
+import app.mysocialmedia.UserProfileFeature.AboutBio;
+import app.mysocialmedia.UserProfileFeature.ProfileBanner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -113,19 +115,19 @@ public class UserController {
 
 //    TEST AREA
 
-    @PutMapping("/bio/{userId}/{content}")
-    public UserProfileBio editAboutBio(@RequestHeader(value = "Authorization") String token, @PathVariable long userId,@PathVariable String content) throws SQLException {
-        return getInstance(token).editProfileAboutBio(userId, content);
+    @PutMapping("/editAboutBio")
+    public void editAboutBio(@RequestHeader(value = "Authorization") String token, @RequestBody AboutBio aboutBio) throws SQLException {
+        getInstance(token).editAboutBio(aboutBio);
     }
 
-    @GetMapping("/bio/{userId}")
-    public UserProfileBio getProfileBio(@RequestHeader(value = "Authorization") String token, @PathVariable long userId) throws SQLException {
-        return getInstance(token).getUserProfileBio(userId);
+    @GetMapping("/getAbout/{userId}")
+    public AboutBio getAbout(@RequestHeader(value = "Authorization") String token, @PathVariable long userId) throws SQLException {
+        return getInstance(token).getAboutBio(userId);
     }
 
-    @PutMapping("/bio/{userId}/{bannerUrl}")
-    public UserProfileBio editBannerBio(@RequestHeader(value = "Authorization") String token, @PathVariable long userId,@PathVariable String bannerUrl) throws SQLException {
-        return getInstance(token).editProfileBanner(userId, bannerUrl);
+    @PutMapping("/editBanner/{banner}")
+    public void editBanner(@RequestHeader(value = "Authorization") String token, @RequestBody ProfileBanner banner) throws SQLException {
+        getInstance(token).editeBanner(banner);
     }
 
 //    TEST AREA
