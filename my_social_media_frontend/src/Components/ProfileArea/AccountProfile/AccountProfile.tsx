@@ -43,7 +43,6 @@ export function AccountProfile(): JSX.Element {
                 user={user}
             />}
 
-
             <hr className={"userProfileHr"}/>
 
         </div>

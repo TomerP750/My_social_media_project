@@ -47,6 +47,7 @@ public class UserController {
 
     @PutMapping("updateuser")
     public void updateUser(@RequestHeader(value = "Authorization") String token,@RequestBody User user) throws SQLException {
+        System.out.println(user);
         getInstance(token).updateUser(user);
     }
 

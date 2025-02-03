@@ -23,10 +23,12 @@ export function EditProfile(props: EditProfileProps): JSX.Element {
         userService
             .getProfileByUserName(userName)
             .then((user) => {
+                setValue("id", user.id)
                 setValue("firstName", user.firstName);
                 setValue("lastName", user.lastName);
+                setValue("image", "");
+                setValue("password", "");
                 setValue("email", user.email);
-                setValue("image", user.image);
             })
             .catch((error) => console.error("Error fetching user data:", error));
     }, [userName, setValue]);
@@ -63,9 +65,21 @@ export function EditProfile(props: EditProfileProps): JSX.Element {
                                 className="input-field"
                             />
                             <input
+                                type="text"
+                                placeholder="Username"
+                                {...register("userName")}
+                                className="input-field"
+                            />
+                            <input
                                 type="email"
                                 placeholder="Email"
                                 {...register("email")}
+                                className="input-field"
+                            />
+                            <input
+                                type="password"
+                                placeholder="Password"
+                                {...register("password")}
                                 className="input-field"
                             />
                             <input

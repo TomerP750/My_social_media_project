@@ -65,19 +65,29 @@ public class UserService {
     }
 
     public void updateUser(User user) {
-        User userFromDB = userRepository.findById(user.getId()).orElseThrow(()->new ExistsException("User Not Found"));
+        User userFromDB = userRepository.findByUserName(user.getUserName());
         if (isLoggedIn) {
+            if (user.getPassword().isEmpty()) {
+                user.setPassword(userFromDB.getPassword());
+            } else {
+                if (user.getPassword().length() < 6) {
+                    throw new InvalidInputException("Password Too Short");
+                }
+            }
+            if (!user.getEmail().equals(userFromDB.getEmail())) {
+                if (userRepository.existsByEmail(user.getEmail())) {
+                    throw new ExistsException("Email Already Exists");
+                }
+            }
+           if (!user.getUserName().equals(userFromDB.getUserName())) {
+               if (userRepository.existsByUserName(user.getUserName())) {
+                   throw new ExistsException("UserName Already Exists");
+               }
+           }
+//           if (user.getPassword().length() < 6) {
+//                   throw new InvalidInputException("Password Too Short");
+//           }
 
-            if (userRepository.existsByEmail(user.getEmail())) {
-                throw new ExistsException("Email Already Exists");
-            }
-            if (userRepository.existsByUserName(user.getUserName())) {
-                throw new ExistsException("UserName Already Exists");
-            }
-
-            if (user.getPassword().length() > 6) {
-                throw new InvalidInputException("Password Too Long");
-            }
 
             if (user.getFirstName().isEmpty()) {
                 user.setFirstName(userFromDB.getFirstName());
@@ -88,9 +98,9 @@ public class UserService {
             if (user.getEmail().isEmpty()) {
                 user.setEmail(userFromDB.getEmail());
             }
-            if (user.getPassword().isEmpty()) {
-                user.setPassword(userFromDB.getPassword());
-            }
+//            if (user.getPassword().isEmpty()) {
+//                user.setPassword(userFromDB.getPassword());
+//            }
             if (user.getUserName().isEmpty()) {
                 user.setUserName(userFromDB.getUserName());
             }
