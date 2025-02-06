@@ -1,0 +1,31 @@
+.NotificationCard {
+	margin-bottom:3rem;
+    margin-top: 1rem;
+    font-family: Outfit;
+    width: 100%;
+}
+
+.notDetails {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.notDetailsTop {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.notiDate {
+    margin-right: 1rem;
+}
+
+.notDetailsBottom {
+    margin-left: 1rem;
+}
+
+.notContent {
+    margin-left: 1rem;
+}

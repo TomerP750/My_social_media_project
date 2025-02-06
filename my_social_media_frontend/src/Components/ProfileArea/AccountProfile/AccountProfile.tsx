@@ -29,6 +29,10 @@ export function AccountProfile(): JSX.Element {
             .catch(err => alert(err.response.data))
     }, []);
 
+    function handleUserUpdate(updatedUser: User) {
+        setUser(updatedUser);
+    }
+
     return (
         <>
         <div className="AccountProfile">
@@ -39,6 +43,7 @@ export function AccountProfile(): JSX.Element {
             <div className="profilePageAvatar"></div>
 
             {user && <UserProfileDetails
+                onUpdate={handleUserUpdate}
                 loggedInUser={loggedInUser}
                 user={user}
             />}

@@ -6,6 +6,7 @@ import {Login} from "../../AuthArea/Login/Login.tsx";
 import {AccountProfile} from "../../ProfileArea/AccountProfile/AccountProfile.tsx";
 import {Register} from "../../AuthArea/Register/Register.tsx";
 import {EditProfile} from "../../ProfileArea/EditProfile/EditProfile.tsx";
+import {NotificationsList} from "../NavbarArea/NotificationsArea/NotificationsList/NotificationsList.tsx";
 
 export function Routing(): JSX.Element {
     return (
@@ -17,6 +18,7 @@ export function Routing(): JSX.Element {
                 <Route path={"login"} element={<Login/>}/>
                 <Route path={"user/:userName"} element={<AccountProfile/>}/>
                 <Route path={"register"} element={<Register/>}/>
+                <Route path={"notifications"} element={<NotificationsList/>}/>
 
                 <Route path={"*"} Component={NotFound}/>
             </Routes>

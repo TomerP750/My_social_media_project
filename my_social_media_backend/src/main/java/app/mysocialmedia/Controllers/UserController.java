@@ -1,6 +1,7 @@
 package app.mysocialmedia.Controllers;
 
 import app.mysocialmedia.Beans.*;
+import app.mysocialmedia.NotificationsFeature.Notification;
 import app.mysocialmedia.Security.SessionManager;
 import app.mysocialmedia.Services.UserService;
 import app.mysocialmedia.UserProfileFeature.AboutBio;
@@ -136,6 +137,23 @@ public class UserController {
     @GetMapping("search/{query}")
     public List<User> searchUsers(@RequestHeader(value = "Authorization") String token, @PathVariable String query) throws SQLException {
         return getInstance(token).searchUsers(query);
+    }
+
+    // NOTIFICATIONS
+
+    @GetMapping("notifications")
+    public List<Notification> getNotifications(@RequestHeader(value = "Authorization") String token) throws SQLException {
+        return getInstance(token).getUserNotifications();
+    }
+
+    @GetMapping("notCount")
+    public int getNotificationsCount(@RequestHeader(value = "Authorization") String token) throws SQLException {
+        return getInstance(token).getNotificationsCount();
+    }
+
+    @DeleteMapping("notsRemove")
+    public void removeNotification(@RequestHeader(value = "Authorization") String token) throws SQLException {
+        getInstance(token).removeUserNotifications();
     }
 
 

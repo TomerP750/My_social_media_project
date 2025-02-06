@@ -5,9 +5,16 @@
     padding-top: 70px;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1180px) {
     .Layout {
         padding-left: 1rem;
+        padding-right: 5rem;
+    }
+}
+
+@media (max-width: 577px) {
+    .Layout {
+        padding-left: 5rem;
         padding-right: 5rem;
     }
 }

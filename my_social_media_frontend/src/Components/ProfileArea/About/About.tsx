@@ -3,7 +3,6 @@ import {useEffect, useState} from "react";
 import userService from "../../../Services/UserService.ts";
 import {User} from "../../../Models/User.ts";
 import EditIcon from '@mui/icons-material/Edit';
-import {useNavigate} from "react-router-dom";
 import {authStore} from "../../../Redux/AuthSlice.ts";
 import {AboutBio} from "../../../Models/AboutBio.ts";
 
@@ -15,7 +14,6 @@ export function About(props: AboutProps): JSX.Element {
 
     const [bio, setBio] = useState<AboutBio>();
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const navigate = useNavigate();
 
 
     const [content, setContent] = useState<string>('');
@@ -28,7 +26,7 @@ export function About(props: AboutProps): JSX.Element {
         userService.getAboutByUserId(props.user.id)
             .then(res => setBio(res))
             .catch(err => alert(err.response.data))
-    }, []);
+    }, [props.user.id]);
 
     function handleAboutBioEditSave() {
         if (props.user) {
@@ -44,17 +42,24 @@ export function About(props: AboutProps): JSX.Element {
 
     return (
         <div className="About">
-            <div className="aboutTop">
-                <h1 className={"aboutBioTitle"}>About</h1>
-                {authStore.getState().userName === props.user.userName && <EditIcon
-                    className={"aboutBioEditIcon"}
-                    onClick={() => setIsModalOpen(true)}
-                />}
-            </div>
 
-            <div className="aboutBioContent">
-                {bio && <p className={"aboutBioText"}>{bio.content}</p>}
-            </div>
+            {bio && bio.content && bio.content.length > 0 && (
+                <>
+                    <div className="aboutTop">
+                        <h1 className={"aboutBioTitle"}>About</h1>
+                        {authStore.getState().userName === props.user.userName && (
+                            <EditIcon
+                                className={"aboutBioEditIcon"}
+                                onClick={() => setIsModalOpen(true)}
+                            />
+                        )}
+                    </div>
+
+                    <div className="aboutBioContent">
+                        <p className={"aboutBioText"}>{bio.content}</p>
+                    </div>
+                </>
+            )}
 
             {isModalOpen && (
                 <div className="modal">

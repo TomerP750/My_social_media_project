@@ -4,6 +4,9 @@ import app.mysocialmedia.Beans.*;
 import app.mysocialmedia.Exceptions.ExistsException;
 import app.mysocialmedia.Exceptions.InvalidInputException;
 import app.mysocialmedia.Exceptions.NotLoggedInException;
+import app.mysocialmedia.NotificationsFeature.Notification;
+import app.mysocialmedia.NotificationsFeature.NotificationRepository;
+import app.mysocialmedia.NotificationsFeature.NotificationService;
 import app.mysocialmedia.Repositories.*;
 import app.mysocialmedia.UserProfileFeature.AboutBio;
 import app.mysocialmedia.UserProfileFeature.AboutRepository;
@@ -30,8 +33,12 @@ public class UserService {
     private AboutRepository aboutRepository;
     private BannerRepository bannerRepository;
 
+    // maybe remove the notification repository
 
-    public UserService(FollowingRepository followingRepository, UserRepository userRepository, PostRepository postRepository, PostLikesRepository postLikesRepository, PostCommentRepository postCommentRepository, AboutRepository aboutRepository, BannerRepository bannerRepository ) {
+    private NotificationService notificationService;
+
+
+    public UserService(FollowingRepository followingRepository, UserRepository userRepository, PostRepository postRepository, PostLikesRepository postLikesRepository, PostCommentRepository postCommentRepository, AboutRepository aboutRepository, BannerRepository bannerRepository, NotificationService notificationService ) {
         this.followingRepository = followingRepository;
         this.userRepository = userRepository;
         this.postRepository = postRepository;
@@ -39,6 +46,7 @@ public class UserService {
         this.postCommentRepository = postCommentRepository;
         this.aboutRepository = aboutRepository;
         this.bannerRepository = bannerRepository;
+        this.notificationService = notificationService;
     }
     public void login(String email, String password) {
         if (userRepository.existsByEmailAndPassword(email, password)) {
@@ -65,7 +73,8 @@ public class UserService {
     }
 
     public void updateUser(User user) {
-        User userFromDB = userRepository.findByUserName(user.getUserName());
+        System.out.println("update user mthod user id: " + user.getId());
+        User userFromDB = userRepository.findById(user.getId()).orElseThrow(() -> new ExistsException("User not found"));
         if (isLoggedIn) {
             if (user.getPassword().isEmpty()) {
                 user.setPassword(userFromDB.getPassword());
@@ -79,16 +88,12 @@ public class UserService {
                     throw new ExistsException("Email Already Exists");
                 }
             }
-           if (!user.getUserName().equals(userFromDB.getUserName())) {
-               if (userRepository.existsByUserName(user.getUserName())) {
-                   throw new ExistsException("UserName Already Exists");
-               }
-           }
-//           if (user.getPassword().length() < 6) {
-//                   throw new InvalidInputException("Password Too Short");
-//           }
-
-
+            if (user.getUserName() != null && !user.getUserName().equals(userFromDB.getUserName())) {
+                // Check if the new username already exists in the database
+                if (userRepository.existsByUserName(user.getUserName())) {
+                    throw new ExistsException("Username Already Exists");
+                }
+            }
             if (user.getFirstName().isEmpty()) {
                 user.setFirstName(userFromDB.getFirstName());
             }
@@ -98,9 +103,6 @@ public class UserService {
             if (user.getEmail().isEmpty()) {
                 user.setEmail(userFromDB.getEmail());
             }
-//            if (user.getPassword().isEmpty()) {
-//                user.setPassword(userFromDB.getPassword());
-//            }
             if (user.getUserName().isEmpty()) {
                 user.setUserName(userFromDB.getUserName());
             }
@@ -163,6 +165,26 @@ public class UserService {
     }
 
     //TODO check likePost and checkiflikeed one of them not needed
+//    public boolean likeUnlike(Post post) {
+//        if (isLoggedIn) {
+//            Post postFromDb = postRepository.findById(post.getId()).orElseThrow(()->new ExistsException("Post Not Found"));
+//            PostLike postLike = postLikesRepository.findByPostIdAndLikerId(post.getId(), user.getId());
+//            if (postLike != null) {
+//                postFromDb.setLikeCount(postFromDb.getLikeCount() - 1);
+//                postRepository.save(postFromDb);
+//                postLikesRepository.deleteById(postLike.getId());
+//                return false;
+//                } else {
+//                    postFromDb.setLikeCount(post.getLikeCount() + 1);
+//                    postRepository.save(postFromDb);
+//                    postLikesRepository.save(new PostLike(post, user));
+//                    return true;
+//                }
+//        } else {
+//            throw new NotLoggedInException("Please Login");
+//        }
+//    }
+
     public boolean likeUnlike(Post post) {
         if (isLoggedIn) {
             Post postFromDb = postRepository.findById(post.getId()).orElseThrow(()->new ExistsException("Post Not Found"));
@@ -172,16 +194,16 @@ public class UserService {
                 postRepository.save(postFromDb);
                 postLikesRepository.deleteById(postLike.getId());
                 return false;
-                } else {
-                    postFromDb.setLikeCount(post.getLikeCount() + 1);
-                    postRepository.save(postFromDb);
-                    postLikesRepository.save(new PostLike(post, user));
-                    return true;
-                }
+            } else {
+                postFromDb.setLikeCount(post.getLikeCount() + 1);
+                postRepository.save(postFromDb);
+                postLikesRepository.save(new PostLike(post, user));
+                notificationService.addNotification("like", user.getUserName()+" "+" liked your post", postFromDb.getAuthor());
+                return true;
+            }
         } else {
             throw new NotLoggedInException("Please Login");
         }
-
     }
 
     /*For Render Purposes*/
@@ -200,6 +222,23 @@ public class UserService {
         return found;
     }
 
+//    public PostComment commentOnPost(PostComment postComment) {
+//        if (isLoggedIn) {
+//            Post postFromDb = postRepository.findById(postComment.getPost().getId()).orElseThrow(()->new ExistsException("Post Not Found"));
+//            if (postComment.getMessage().isEmpty()) {
+//                throw new InvalidInputException("Cannot Comment Empty Message");
+//            }
+//            if (postComment.getMessage().length() > 1000) {
+//                throw new InvalidInputException("Reached Maximum Characters");
+//            } else {
+//                postComment.setCommentAuthor(user);
+//                return postCommentRepository.save(postComment);
+//            }
+//        } else {
+//            throw new NotLoggedInException("Please Login");
+//        }
+//    }
+
     public PostComment commentOnPost(PostComment postComment) {
         if (isLoggedIn) {
             Post postFromDb = postRepository.findById(postComment.getPost().getId()).orElseThrow(()->new ExistsException("Post Not Found"));
@@ -210,6 +249,7 @@ public class UserService {
                 throw new InvalidInputException("Reached Maximum Characters");
             } else {
                 postComment.setCommentAuthor(user);
+                notificationService.addNotification("comment", user.getUserName()+" "+"commented on your post", postFromDb.getAuthor());
                 return postCommentRepository.save(postComment);
             }
         } else {
@@ -230,9 +270,30 @@ public class UserService {
             throw new NotLoggedInException("Please Login");
         }
     }
+//    public boolean followUnfollow(long followed) throws SQLException {
+//        User toBeFollowed = userRepository.findById(followed).orElseThrow(() -> new SecurityException("Error"));
+//        Following following = new Following(user, toBeFollowed);
+//        boolean followingUser = false;
+//        if (isLoggedIn) {
+//            Following temp = followingRepository.findByFollowerIdAndFollowedId(user.getId(), following.getFollowd().getId());
+//            if (following.getFollower().getId() == user.getId()) {
+//                if (temp != null) {
+//                    followingRepository.deleteById(temp.getId());
+//                } else {
+//                    followingRepository.save(following);
+//                    followingUser = true;
+//                }
+//            }
+//        } else {
+//            throw new NotLoggedInException("Please Login");
+//        }
+//        return followingUser;
+//    }
+
     public boolean followUnfollow(long followed) throws SQLException {
         User toBeFollowed = userRepository.findById(followed).orElseThrow(() -> new SecurityException("Error"));
         Following following = new Following(user, toBeFollowed);
+        String notificationType = "follow";
         boolean followingUser = false;
         if (isLoggedIn) {
             Following temp = followingRepository.findByFollowerIdAndFollowedId(user.getId(), following.getFollowd().getId());
@@ -242,6 +303,8 @@ public class UserService {
                 } else {
                     followingRepository.save(following);
                     followingUser = true;
+                    notificationService.addNotification(notificationType,  user.getUserName() + " " + "Followed you", toBeFollowed);
+
                 }
             }
         } else {
@@ -347,5 +410,32 @@ public class UserService {
         }
     }
 
+    public int getNotificationsCount() {
+        if (isLoggedIn) {
+            return notificationService.getNotificationCount(user.getId());
+        } else {
+            throw new NotLoggedInException("Not Logged In");
+        }
+    }
+
+    public void removeUserNotifications() {
+        if (isLoggedIn) {
+            notificationService.removeUserNotifications(user.getId());
+        } else {
+            throw new NotLoggedInException("Not Logged In");
+        }
+    }
+
+    public List<Notification> getUserNotifications() {
+        if (isLoggedIn) {
+            return notificationService.getAllNotifications(user.getId());
+        } else {
+            throw new NotLoggedInException("Not Logged In");
+        }
+    }
+
+
+
+    // utils
 
 }

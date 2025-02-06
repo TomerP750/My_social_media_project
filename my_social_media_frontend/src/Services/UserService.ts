@@ -79,6 +79,14 @@ class UserService {
     async searchUsers(query: string) {
         return (await axios.get(`http://localhost:8080/user/search/${query}`)).data
     }
+// NOTIFICATIONS
+    async getNotificationsCount() {
+        return (await axios.get("http://localhost:8080/user/notCount")).data;
+    }
+
+    async getAllNotifications() {
+        return (await axios.get("http://localhost:8080/user/notifications")).data
+    }
 
 //     TEST FIELD BOTTOM
 

@@ -8,6 +8,8 @@ import userService from "../../../Services/UserService.ts";
 
 interface EditProfileProps {
     onClose: () => void
+    onUpdate: (user: User) => void
+
 }
 
 export function EditProfile(props: EditProfileProps): JSX.Element {
@@ -17,29 +19,30 @@ export function EditProfile(props: EditProfileProps): JSX.Element {
     const params = useParams();
     const userName = params.userName!;
 
-    // const [isModalOpen, setIsModalOpen] = useState(false);
-
     useEffect(() => {
         userService
-            .getProfileByUserName(userName)
+            .getAccountDetails()
             .then((user) => {
                 setValue("id", user.id)
                 setValue("firstName", user.firstName);
                 setValue("lastName", user.lastName);
+                setValue("userName", user.userName);
                 setValue("image", "");
                 setValue("password", "");
                 setValue("email", user.email);
             })
             .catch((error) => console.error("Error fetching user data:", error));
-    }, [userName, setValue]);
+    }, [userName ,setValue]);
 
     function sendUser(user: User) {
         if (user) {
-            user.userName = userName;
-            console.log("user: ", user);
+            // console.log("user: ", user);
+            console.log("sending id: ", user.id)
             userService.updateUser(user)
                 .then(() => {
                     navigate(`/user/${user.userName}`);
+                    props.onUpdate(user);
+                    props.onClose();
                 })
                 .catch(err => alert(err.response.data));
         }

@@ -26,8 +26,6 @@ export function PostTop(props: PostTopProps): JSX.Element {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const navigate = useNavigate();
 
-
-
     function handleSaveEdit(updatedPost: Post) {
         props.onEdit(updatedPost);
         setIsModalOpen(false);
@@ -74,7 +72,8 @@ export function PostTop(props: PostTopProps): JSX.Element {
         return () => clearInterval(intervalId);
     }, [props.post.datePosted]);
 
-
+    console.log("redux username: ", authStore.getState().userName)
+    console.log("not redux username: ", props.post.author.userName)
 
 
     return (

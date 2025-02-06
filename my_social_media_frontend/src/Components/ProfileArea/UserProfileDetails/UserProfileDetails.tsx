@@ -9,6 +9,7 @@ import feedService from "../../../Services/FeedService.ts";
 interface UserProfileDetailsProps {
     user: User
     loggedInUser: User
+    onUpdate: (updatedUser: User) => void
 }
 export function UserProfileDetails(props: UserProfileDetailsProps): JSX.Element {
 
@@ -77,7 +78,9 @@ export function UserProfileDetails(props: UserProfileDetailsProps): JSX.Element 
             </div>
 
             {modalOpened && modalType === "edit" && (
-                <EditProfile onClose={() => setModalOpened(false)} />
+                <EditProfile
+                    onUpdate={props.onUpdate}
+                    onClose={() => setModalOpened(false)} />
             )}
             {modalOpened && modalType === "followers" && (
                 <FollowersModal

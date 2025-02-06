@@ -51,13 +51,6 @@ export function Feed(): JSX.Element {
             .then(() => setPosts(prevPosts => prevPosts.filter(post => post.id !== postId))  )
             .catch(err => err.response.data)
     }
-
-    // function handlePostEdit(updatedPost: Post) {
-    //     setPosts(prevPosts =>
-    //         prevPosts.map(post => post.id === updatedPost.id ? updatedPost : post)
-    //     );
-    // }
-
     function handlePostEdit(updatedPost: Post) {
         console.log("updated post: ",updatedPost)
         setPosts((prevPosts) =>

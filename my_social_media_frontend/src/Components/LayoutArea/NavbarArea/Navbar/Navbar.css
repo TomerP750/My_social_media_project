@@ -45,7 +45,10 @@
     margin: 0 1rem;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
+
+
 
 .navbarItem:hover {
     cursor: pointer;
@@ -119,16 +122,6 @@
     margin-right: -10%;
 }
 
-.navbarLogOutItem {
-    color: white;
-    text-decoration: none;
-    margin: 0 15px;
-}
-
-.navbarLogOutItem:hover {
-    transform: scale(1.1);
-}
-
 .navbarLoginItem {
     color: white;
     text-decoration: none;
@@ -191,10 +184,15 @@
     padding: 10px;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1166px) {
     .navbar {
         z-index: 1000;
+        grid-template-columns: 1fr 1fr 1fr;
+        padding: 0 10px;
     }
+
+
+
 }
 
 
