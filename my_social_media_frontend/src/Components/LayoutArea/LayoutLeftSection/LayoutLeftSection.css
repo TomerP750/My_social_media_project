@@ -1,5 +1,5 @@
 .LayoutLeftSection {
-    flex: 3;
+    /*width: 25%;*/
 	height: calc(100vh - 50px);
     /*background-color: #f4f3f3;*/
     font-family: Outfit;

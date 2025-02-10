@@ -1,20 +1,25 @@
 .Layout {
     display: flex;
+    flex-wrap: wrap;
     width: 100%;
     min-height: 100vh;
     padding-top: 70px;
+    box-sizing: border-box;
+    position: relative;
+
 }
 
 @media (max-width: 1180px) {
     .Layout {
-        padding-left: 1rem;
-        padding-right: 5rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+
     }
 }
 
 @media (max-width: 577px) {
     .Layout {
-        padding-left: 5rem;
-        padding-right: 5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
 }

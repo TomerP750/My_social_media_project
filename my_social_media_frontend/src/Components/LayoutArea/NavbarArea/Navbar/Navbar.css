@@ -1,12 +1,15 @@
 .navbar {
 	height: 70px;
-    width: 100%;
+    /*width: 100%;*/
     background-color: #0b56d6;
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    display: flex;
+    justify-content: space-between;
+    /*grid-template-columns: 1fr 2fr 1fr;*/
     align-items: center;
     position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     font-family: "Outfit";
     font-weight: 600;
     z-index: 1000;
@@ -26,14 +29,15 @@
 }
 
 .navbarLeft {
+    width: 14%;
     display: flex;
     justify-content: flex-end;
     margin-right: 1rem;
-    flex: 3;
+
 }
 
 .navbarCenter {
-    flex: 5;
+    width: 60%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -68,11 +72,11 @@
 }
 
 .navbarRight{
-    flex: 4;
+    width: 25%;
     display: flex;
     align-items: center;
     /*justify-content: space-between;*/
-    justify-content: center;
+    /*justify-content: center;*/
     color: white;
 }
 
@@ -136,7 +140,6 @@
 
 .navbarItems {
     display: flex;
-    margin-right: 3.1rem;
 }
 
 
@@ -190,7 +193,6 @@
         grid-template-columns: 1fr 1fr 1fr;
         padding: 0 10px;
     }
-
 
 
 }

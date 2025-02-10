@@ -82,7 +82,9 @@ export function StartPosting(props: StartPostingProps): JSX.Element {
                             <span className={"shareOptionText"}>Tag</span>
                         </div>
                     </div>
+                    <div className="postButtonContainer">
                     <button className={"postButton"} onClick={handlePost}>Post</button>
+                    </div>
                 </div>
             </div>
 

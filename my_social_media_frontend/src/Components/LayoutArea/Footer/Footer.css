@@ -8,6 +8,7 @@
 	align-items: flex-start;
 	flex-wrap: wrap;
 	font-family: Outfit;
+	width: 100%;
 }
 
 .footer-left {
@@ -111,10 +112,31 @@
 	background-color: #0056b3;
 }
 
+
+@media (max-width: 1300px) {
+	.Footer {
+		z-index: 2000;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-color: #394c55;
+		color: #fff;
+		padding: unset;
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		font-family: Outfit;
+		width: unset;
+		padding: 1rem;
+	}
+}
+
+
 @media (max-width: 768px) {
 	.Footer {
-		flex-direction: column;
-		align-items: center;
+		/*flex-direction: column;*/
+		/*align-items: center;*/
 	}
 
 	.footer-left {
@@ -123,19 +145,28 @@
 	}
 
 	.footer-right {
+		width: unset;
+		display: flex;
+		flex-direction: column;
+		align-items: unset;
 		width: 100%;
+		display: flex;
 		align-items: center;
+		justify-content: center;
 		margin-top: 20px;
+
 	}
 
 	.subscribe {
-		flex-direction: column;
-		align-items: stretch;
+		width: 100%;
+		justify-content: center;
 	}
 
 	.subscribe-input,
 	.subscribe-btn {
-		width: 100%;
-		margin-right: 0;
+		width: 30%;
+		margin: unset;
 	}
+
+
 }

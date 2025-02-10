@@ -1,5 +1,6 @@
 .LayoutRightSection {
-	flex: 3.5;
+	position: relative;
+	/*width: 25%;*/
 	/*background-color: #f4f3f3;*/
 	height: calc(100vh - 50px);
 
@@ -79,4 +80,5 @@
 	.LayoutRightSection {
 		display: none;
 	}
+
 }

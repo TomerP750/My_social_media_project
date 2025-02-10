@@ -14,13 +14,15 @@ export function Layout(): JSX.Element {
 
     return (
         <>
-        {showHeader && <Navbar/>}
+        {/*{showHeader && <Navbar/>}*/}
         <div className="Layout">
+            {showHeader && <Navbar/>}
             {showHeader && <LayoutLeftSection/>}
             <Routing/>
             {showHeader && <LayoutRightSection/>}
-        </div>
             {showHeader && <Footer/>}
+        </div>
+            {/*{showHeader && <Footer/>}*/}
             </>
     );
 }
