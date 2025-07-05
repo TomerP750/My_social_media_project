@@ -1,6 +1,10 @@
 # Compiled class file
 *.class
 
+# ignore Spring Boot config
+/src/main/resources/application.properties
+/src/main/resources/application-*.properties
+
 # Log file
 *.log
 
